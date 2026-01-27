@@ -1,0 +1,57 @@
+{
+    "type": "object",
+    "properties": {
+        "sections": {
+            "type": "object",
+            "properties": {
+                "photo": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "enum": [
+                                "✅ De acordo com as orientações",
+                                "⚠️ Precisa de ajustes"
+                            ]
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "cover_image": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "enum": [
+                                "✅ De acordo com as orientações",
+                                "⚠️ Precisa de ajustes"
+                            ]
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                }
+            },
+            "required": [
+                "photo",
+                "cover_image"
+            ]
+        },
+        "general_comments": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "sections",
+        "general_comments"
+    ]
+}

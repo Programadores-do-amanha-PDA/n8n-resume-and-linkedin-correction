@@ -1,0 +1,241 @@
+{
+    "type": "object",
+    "properties": {
+        "sections": {
+            "type": "object",
+            "properties": {
+                "header": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Nome e sobrenome assim como está/estará no Linkedin",
+                                    "⚠️ Número de celular",
+                                    "⚠️ Email",
+                                    "⚠️ Cidade e estado em que resido atualmente",
+                                    "⚠️ Link do Linkedin",
+                                    "⚠️ Link do Github",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "objective": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Campo inexistente",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "summary": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Ultrapassa 5 linhas",
+                                    "⚠️ Não contém conquistas, interesses e metas profissionais",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "education": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Formação no Programadores do Amanhã",
+                                    "⚠️ Informações sobre meu ensino médio",
+                                    "⚠️ Graduação ou curso técnico",
+                                    "⚠️ Ordem cronológica",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "projects": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Descrição, resultados e link de acesso",
+                                    "⚠️ Tecnologias utilizadas em cada um deles destacadas",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "professional_experience": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Cargo, nome da empresa e duração",
+                                    "⚠️ Descrição das atividades realizadas, com destaque de resultados e conquistas",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "technical_skills": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Linguagens e frameworks",
+                                    "⚠️ Nível de conhecimento em idioma estrangeiro",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                },
+                "courses": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Título do Curso",
+                                    "⚠️ Carga horária",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                }
+            },
+            "final_review": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "⚠️ Revisar o português",
+                                "⚠️ Diminuir número de páginas",
+                                "Outro: (explique)",
+                                "✅ Tudo certo"
+                            ]
+                        }
+                    },
+                    "feedback": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "status",
+                    "feedback"
+                ]
+            },
+            "required": [
+                "header",
+                "objective",
+                "summary",
+                "education",
+                "projects",
+                "professional_experience",
+                "technical_skills",
+                "courses",
+                "final_review"
+            ]
+        },
+        "general_comments": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "sections",
+        "general_comments"
+    ]
+}

@@ -14,6 +14,7 @@ Receba os dados do currículo do aluno, valide item a item e gere um JSON estrit
 - **Contato**: Deve conter celular (com DDD) e e-mail profissional (sem termos infantis ou apelidos)
 - **Localização**: Apenas Cidade/Estado (não incluir endereço completo/CEP por segurança)
 - **Links**: LinkedIn e GitHub devem ser hiperlinks clicáveis. O link do LinkedIn deve estar limpo (sem números aleatórios no final)
+- **Dados Pessoais**: Estado civil e idade são consideradas informações faltantes (devem estar ausentes do currículo), pois são dados não-necessários para o processo seletivo técnico e podem gerar viés inconsciente
 
 ### 🎯 Objetivo
 
@@ -57,7 +58,7 @@ Receba os dados do currículo do aluno, valide item a item e gere um JSON estrit
 - **Relevância**: Apenas cursos que agreguem à área de tecnologia
 - **Dados**: Nome do curso e carga horária (opcional, mas recomendada para cursos técnicos)
 
-### 🔚 Conferência Final
+### 🔚 Revisão Final
 
 - **Gramática**: Zero erros de digitação ou português
 - **Design**: Layout limpo, sem excesso de cores ou colunas complexas que dificultem a leitura de ATS (sistemas de triagem)
@@ -89,6 +90,7 @@ Receba os dados do currículo do aluno, valide item a item e gere um JSON estrit
                   "⚠️ Cidade e estado em que resido atualmente",
                   "⚠️ Link do Linkedin",
                   "⚠️ Link do Github",
+                  "⚠️ Presença de dados não-necessários (idade, estado civil, CPF, etc.)",
                   "✅ Tudo certo"
                 ]
               }
@@ -236,28 +238,28 @@ Receba os dados do currículo do aluno, valide item a item e gere um JSON estrit
             }
           },
           "required": ["status", "feedback"]
-        }
-      },
-      "final_review": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "⚠️ Revisar o português",
-                "⚠️ Diminuir número de páginas",
-                "Outro: (explique)",
-                "✅ Tudo certo"
-              ]
+        },
+        "final_review": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "⚠️ Revisar o português",
+                  "⚠️ Diminuir número de páginas",
+                  "Outro: (explique)",
+                  "✅ Tudo certo"
+                ]
+              }
+            },
+            "feedback": {
+              "type": "string"
             }
           },
-          "feedback": {
-            "type": "string"
-          }
-        },
-        "required": ["status", "feedback"]
+          "required": ["status", "feedback"]
+        }
       },
       "required": [
         "header",

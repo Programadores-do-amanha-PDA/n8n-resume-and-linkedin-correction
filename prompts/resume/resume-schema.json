@@ -192,31 +192,31 @@
                         "status",
                         "feedback"
                     ]
-                }
-            },
-            "final_review": {
-                "type": "object",
-                "properties": {
-                    "status": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "⚠️ Revisar o português",
-                                "⚠️ Diminuir número de páginas",
-                                "Outro: (explique)",
-                                "✅ Tudo certo"
-                            ]
+                },
+                "final_review": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "⚠️ Revisar o português",
+                                    "⚠️ Diminuir número de páginas",
+                                    "Outro: (explique)",
+                                    "✅ Tudo certo"
+                                ]
+                            }
+                        },
+                        "feedback": {
+                            "type": "string"
                         }
                     },
-                    "feedback": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "status",
-                    "feedback"
-                ]
+                    "required": [
+                        "status",
+                        "feedback"
+                    ]
+                }
             },
             "required": [
                 "header",

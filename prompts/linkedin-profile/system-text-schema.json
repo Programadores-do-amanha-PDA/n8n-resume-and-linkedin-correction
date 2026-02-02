@@ -1,230 +1,171 @@
 {
-    "type": "object",
-    "properties": {
-        "sections": {
-            "type": "object",
-            "description": "Avaliação detalhada de cada regra textual/estrutural",
-            "properties": {
-                "custom_url": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "headline": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "contact_info": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "summary": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "experience": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "education": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "licenses_and_certificates": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "volunteering": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "skills": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "projects_and_publications": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                },
-                "languages": {
-                    "type": "object",
-                    "properties": {
-                        "status": {
-                            "enum": [
-                                "✅ De acordo com as orientações",
-                                "⚠️ Precisa de ajustes"
-                            ]
-                        },
-                        "feedback": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "status",
-                        "feedback"
-                    ]
-                }
+  "type": "object",
+  "properties": {
+    "sections": {
+      "type": "object",
+      "description": "Avaliação detalhada de cada regra textual/estrutural",
+      "properties": {
+        "custom_url": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
             },
-            "required": [
-                "custom_url",
-                "headline",
-                "contact_info",
-                "summary",
-                "experience",
-                "education",
-                "licenses_and_certificates",
-                "volunteering",
-                "skills",
-                "projects_and_publications",
-                "languages"
-            ]
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
         },
-        "general_comments": {
-            "type": "string",
-            "description": "Comentários gerais sobre consistência textual, tom profissional e narrativa de carreira."
+        "headline": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "contact_info": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "experience": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "education": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "licenses_and_certificates": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "volunteering": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "skills": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "projects_and_publications": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
+        },
+        "languages": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "✅ De acordo com as orientações",
+                "⚠️ Precisa de ajustes"
+              ]
+            },
+            "feedback": { "type": "string" }
+          },
+          "required": ["status", "feedback"]
         }
+      },
+      "required": [
+        "custom_url",
+        "headline",
+        "contact_info",
+        "summary",
+        "experience",
+        "education",
+        "licenses_and_certificates",
+        "volunteering",
+        "skills",
+        "projects_and_publications",
+        "languages"
+      ]
     },
-    "required": [
-        "sections",
-        "general_comments"
-    ]
+    "general_comments": {
+      "type": "string"
+    }
+  },
+  "required": ["sections", "general_comments"]
 }

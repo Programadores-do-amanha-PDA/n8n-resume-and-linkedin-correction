@@ -1,0 +1,4825 @@
+{
+  "name": "[Automatização] Simulador PS",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Pega as linhas adicionadas sem correção na planilha\n\nmin = 60\nmax = 120",
+        "height": 400,
+        "width": 1152
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "df0d54df-dea7-4b59-a934-5a514d9392de",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "eb3e57a3-c608-4eb5-a5a2-b755c8ee550f",
+              "leftValue": "={{ $json.ID }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "326026a3-60a7-4e93-82af-7857185c1257",
+              "leftValue": "={{ $json['Endereço de e-mail'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "27d09b1e-99d9-4d42-a542-9d17335b4e87",
+              "leftValue": "={{ $json['Link LinkedIn:'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2111e903-2d79-49f9-b9a6-20cc179d7a7e",
+              "leftValue": "={{ $json['Currículo:'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "330566f4-c35f-47bb-8e3f-b9eb762bb5e9",
+              "leftValue": "={{ $json['Whatsapp:'] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "9a2e62de-f6ff-4285-b4f9-fdde52e8a541",
+              "leftValue": "={{ $json[\"Corrigido?\"] }}",
+              "rightValue": "=\"\"",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "6c31b584-36a2-4219-bd23-9eb23cad95a2",
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "ab12ba7b-9d00-456e-bcd7-f93588691102",
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 120,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        608,
+        176
+      ],
+      "id": "07f6e906-b2f9-4461-9b3c-c240849d2aa1",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "278ff7a7-58ff-4d3f-a519-db3662ab31e3",
+              "leftValue": "={{ $json.deliveryData}}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "62918c05-b841-4225-9c86-453c0c4e9cf4",
+              "leftValue": "={{ $json.resumeCorrection }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "55800256-bfbb-425d-a57e-5e6102f423fe",
+              "leftValue": "={{ $json.linkedinCorrection }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        13344,
+        160
+      ],
+      "id": "0ac0ae1a-57b5-4f68-895f-da4d7ab88aff",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "8iX6pV-GOfTOrAEBH9RSS",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/8iX6pV-GOfTOrAEBH9RSS",
+          "cachedResultName": "[PS] Resume Correction"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2416,
+        448
+      ],
+      "name": "Call [PS] Resume Correction",
+      "id": "18fc9ffe-10f9-46ff-8cf3-168b31ae88b6",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1536,
+        176
+      ],
+      "id": "b9321165-1cec-4798-b706-80bee7cbf60b",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($runIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4128,
+        960
+      ],
+      "id": "e0424e89-897f-45ff-a2bf-a0406ab42785",
+      "name": "Wait1",
+      "webhookId": "1a9d75fe-e5cc-49d1-a769-5d0be146b2e1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ffaa501c-a1d4-473e-b32c-b139a2c83c37",
+              "leftValue": "={{ $json.deliveryData }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "54219058-817a-4a88-8445-01f979019729",
+              "leftValue": "={{ $json.resumeCorrection }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        4464,
+        176
+      ],
+      "id": "7bca6c78-f163-4f5e-8eb4-d2824d912105",
+      "name": "Filter1",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($runIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        8064,
+        1152
+      ],
+      "id": "55ecee8d-ab17-455d-8b5e-a71ed58405a5",
+      "name": "Wait",
+      "webhookId": "1a9d75fe-e5cc-49d1-a769-5d0be146b2e1"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Corrigido?": "Finalizada",
+            "ID": "={{ $('If3').item.json.deliveryData.ID }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "Carimbo de data/hora",
+              "displayName": "Carimbo de data/hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Endereço de e-mail",
+              "displayName": "Endereço de e-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nome Completo:",
+              "displayName": "Nome Completo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "E-mail:",
+              "displayName": "E-mail:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Whatsapp:",
+              "displayName": "Whatsapp:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cidade e Estado:  ",
+              "displayName": "Cidade e Estado:  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Currículo:",
+              "displayName": "Currículo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link LinkedIn:",
+              "displayName": "Link LinkedIn:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "displayName": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, qual o curso e a instituição?",
+              "displayName": "Se sim, qual o curso e a instituição?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "displayName": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "displayName": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Marque as tecnologias com as quais você tem experiência:",
+              "displayName": "Marque as tecnologias com as quais você tem experiência:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "displayName": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "displayName": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "displayName": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "displayName": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "displayName": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pretensão salarial:",
+              "displayName": "Pretensão salarial:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista C",
+              "displayName": "Convite: Entrevista C",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista Téc",
+              "displayName": "Convite: Entrevista Téc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Corrigido?",
+              "displayName": "Corrigido?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        14688,
+        368
+      ],
+      "id": "9b0d998a-3f2b-4997-b518-8f39d32573c1",
+      "name": "Update row status to finished",
+      "retryOnFail": false,
+      "credentials": {
+        "googleApi": {
+          "id": "ti5im2dhY8vSMlFa",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "14OzYmImQxXuEXjh6MC2q16-KbtpXdETCcc_V33uhaJA",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14OzYmImQxXuEXjh6MC2q16-KbtpXdETCcc_V33uhaJA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Carimbo de data/hora": "={{ new Date().toDateTime() }}",
+            "Nome pessoa estudante:": "={{ $json.deliveryData[\"Nome Completo:\"] }}",
+            "📷 Foto:": "={{ $json.linkedinCorrection.sections.photo.status }}",
+            "🌐 URL Personalizado:": "={{ $json.linkedinCorrection.sections.custom_url.status }}",
+            "🌇 Capa:": "={{ $json.linkedinCorrection.sections.cover_image.status }}",
+            "URL Personalizado Feedback:": "={{ $json.linkedinCorrection.sections.contact_info.feedback }}",
+            "🔠 Título:": "={{ $json.linkedinCorrection.sections.headline.status }}",
+            "Titulo Feedback:": "={{ $json.linkedinCorrection.sections.headline.feedback }}",
+            "📲 Informações de Contato:": "={{ $json.linkedinCorrection.sections.contact_info.status }}",
+            "Informações de Contato Feedback:": "={{ $json.linkedinCorrection.sections.contact_info.feedback }}",
+            "Capa Feedback:": "={{ $json.linkedinCorrection.sections.cover_image.feedback }}",
+            "Foto Feedback:": "={{ $json.linkedinCorrection.sections.photo.feedback }}",
+            "✍️ Resumo (sobre):": "={{ $json.linkedinCorrection.sections.summary.status }}",
+            " Resumo (sobre) Feedback:": "={{ $json.linkedinCorrection.sections.summary.feedback }}",
+            "💼 Experiências Profissionais:": "={{ $json.linkedinCorrection.sections.experience.status }}",
+            "Experiências Profissionais Feedback:": "={{ $json.linkedinCorrection.sections.experience.feedback }}",
+            "🎓 Formação acadêmica ou profissional:": "={{ $json.linkedinCorrection.sections.education.status }}",
+            "Formação acadêmica ou profissional Feedback:": "={{ $json.linkedinCorrection.sections.education.feedback }}",
+            "🎖️Licenças e Certificados:": "={{ $json.linkedinCorrection.sections.licenses_and_certificates.status }}",
+            "Licenças e Certificados Feedback:": "={{ $json.linkedinCorrection.sections.licenses_and_certificates.feedback }}",
+            "💟 Trabalho voluntário:": "={{ $json.linkedinCorrection.sections.volunteering.status }}",
+            "Trabalho voluntário Feedback:": "={{ $json.linkedinCorrection.sections.volunteering.feedback }}",
+            "⭐ Competências:": "={{ $json.linkedinCorrection.sections.skills.status }}",
+            "Competências Feedback:": "={{ $json.linkedinCorrection.sections.skills.feedback }}",
+            "🗂️ Projetos e Publicações:": "={{ $json.linkedinCorrection.sections.projects_and_publications.status }}",
+            "Projetos e Publicações Feedback:": "={{ $json.linkedinCorrection.sections.projects_and_publications.feedback }}",
+            "🈵 Idiomas:": "={{ $json.linkedinCorrection.sections.languages.status }}",
+            "Idiomas Feedback:": "={{ $json.linkedinCorrection.sections.languages.feedback }}",
+            "📝 Espaço para comentários gerais:": "={{ $json.linkedinCorrection.general_comments }}",
+            "📝 (Curriculo) Espaço para comentários gerais:": "={{ $json.resumeCorrection.general_comments }}",
+            "Cursos (informação opcional) Feeback": "={{ $json.resumeCorrection.sections.courses.feedback }}",
+            "📚  Cursos (informação opcional)": "={{ $json.resumeCorrection.sections.courses.status.join(\"; \") }}",
+            "Habilidades Técnicas Feedback": "={{ $json.resumeCorrection.sections.technical_skills.feedback }}",
+            "📏   Habilidades Técnicas ": "={{ $json.resumeCorrection.sections.technical_skills.status.join(\"; \") }}",
+            "🧑‍💻  Experiência Profissional ": "={{ $json.resumeCorrection.sections.professional_experience.status.join(\"; \") }}",
+            "Experiência Profissiona": "={{ $json.resumeCorrection.sections.professional_experience.feedback }}",
+            "🗂️   Projetos ": "={{ $json.resumeCorrection.sections.projects.status.join(\"; \") }}",
+            "Projetos Feedback": "={{ $json.resumeCorrection.sections.projects.feedback }}",
+            "🎓  Educação ": "={{ $json.resumeCorrection.sections.education.status.join(\"; \") }}",
+            "Educação Feedback": "={{ $json.resumeCorrection.sections.education.feedback }}",
+            "🤏  Resumo": "={{ $json.resumeCorrection.sections.summary.status.join(\"; \") }}",
+            "Resumo Feeback:": "={{ $json.resumeCorrection.sections.summary.feedback }}",
+            "🎯  Objetivo   ": "={{ $json.resumeCorrection.sections.objective.status.join(\"; \") }}",
+            "Objetivo Feedback": "={{ $json.resumeCorrection.sections.objective.feedback }}",
+            "👋   Cabeçalho (identificação) ": "={{ $json.resumeCorrection.sections.header.status.join(\"; \") }}",
+            "Cabeçalho (identificação) Feedback:": "={{ $json.resumeCorrection.sections.header.feedback }}",
+            "🔚 Conferência Final ": "={{ $json.resumeCorrection.sections.final_review.status.join(\"; \") }}",
+            "Conferência Final Feedback": "={{ $json.resumeCorrection.sections.final_review.feedback }}",
+            "Pontuação Final CV: (acertos/itens avaliados)": "={{ Object.values($json.resumeCorrection.sections).filter(section => section.status[0] === \"✅ Tudo certo\").length /   Object.keys($json.resumeCorrection.sections).length }}",
+            "Pontuação Final LinkedIn: (acertos/itens avaliados)": "={{ Object.values($json.linkedinCorrection.sections).filter(section => section.status === \"✅ De acordo com as orientações\").length /   Object.keys($json.linkedinCorrection.sections).length }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Carimbo de data/hora",
+              "displayName": "Carimbo de data/hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome pessoa estudante:",
+              "displayName": "Nome pessoa estudante:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "📷 Foto:",
+              "displayName": "📷 Foto:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Foto Feedback:",
+              "displayName": "Foto Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🌐 URL Personalizado:",
+              "displayName": "🌐 URL Personalizado:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "URL Personalizado Feedback:",
+              "displayName": "URL Personalizado Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🔠 Título:",
+              "displayName": "🔠 Título:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Titulo Feedback:",
+              "displayName": "Titulo Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🌇 Capa:",
+              "displayName": "🌇 Capa:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Capa Feedback:",
+              "displayName": "Capa Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "📲 Informações de Contato:",
+              "displayName": "📲 Informações de Contato:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Informações de Contato Feedback:",
+              "displayName": "Informações de Contato Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "✍️ Resumo (sobre):",
+              "displayName": "✍️ Resumo (sobre):",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " Resumo (sobre) Feedback:",
+              "displayName": " Resumo (sobre) Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "💼 Experiências Profissionais:",
+              "displayName": "💼 Experiências Profissionais:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Experiências Profissionais Feedback:",
+              "displayName": "Experiências Profissionais Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🎓 Formação acadêmica ou profissional:",
+              "displayName": "🎓 Formação acadêmica ou profissional:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Formação acadêmica ou profissional Feedback:",
+              "displayName": "Formação acadêmica ou profissional Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🎖️Licenças e Certificados:",
+              "displayName": "🎖️Licenças e Certificados:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Licenças e Certificados Feedback:",
+              "displayName": "Licenças e Certificados Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "💟 Trabalho voluntário:",
+              "displayName": "💟 Trabalho voluntário:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trabalho voluntário Feedback:",
+              "displayName": "Trabalho voluntário Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "⭐ Competências:",
+              "displayName": "⭐ Competências:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Competências Feedback:",
+              "displayName": "Competências Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🗂️ Projetos e Publicações:",
+              "displayName": "🗂️ Projetos e Publicações:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Projetos e Publicações Feedback:",
+              "displayName": "Projetos e Publicações Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🈵 Idiomas:",
+              "displayName": "🈵 Idiomas:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Idiomas Feedback:",
+              "displayName": "Idiomas Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "📝 Espaço para comentários gerais:",
+              "displayName": "📝 Espaço para comentários gerais:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Pontuação Final LinkedIn: (acertos/itens avaliados)",
+              "displayName": "Pontuação Final LinkedIn: (acertos/itens avaliados)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "👋   Cabeçalho (identificação) ",
+              "displayName": "👋   Cabeçalho (identificação) ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cabeçalho (identificação) Feedback:",
+              "displayName": "Cabeçalho (identificação) Feedback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🎯  Objetivo   ",
+              "displayName": "🎯  Objetivo   ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Objetivo Feedback",
+              "displayName": "Objetivo Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🤏  Resumo",
+              "displayName": "🤏  Resumo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resumo Feeback:",
+              "displayName": "Resumo Feeback:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🎓  Educação ",
+              "displayName": "🎓  Educação ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Educação Feedback",
+              "displayName": "Educação Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🗂️   Projetos ",
+              "displayName": "🗂️   Projetos ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Projetos Feedback",
+              "displayName": "Projetos Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🧑‍💻  Experiência Profissional ",
+              "displayName": "🧑‍💻  Experiência Profissional ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Experiência Profissiona",
+              "displayName": "Experiência Profissiona",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "📏   Habilidades Técnicas ",
+              "displayName": "📏   Habilidades Técnicas ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Habilidades Técnicas Feedback",
+              "displayName": "Habilidades Técnicas Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "📚  Cursos (informação opcional)",
+              "displayName": "📚  Cursos (informação opcional)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cursos (informação opcional) Feeback",
+              "displayName": "Cursos (informação opcional) Feeback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "🔚 Conferência Final ",
+              "displayName": "🔚 Conferência Final ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Conferência Final Feedback",
+              "displayName": "Conferência Final Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "📝 (Curriculo) Espaço para comentários gerais:",
+              "displayName": "📝 (Curriculo) Espaço para comentários gerais:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Pontuação Final CV: (acertos/itens avaliados)",
+              "displayName": "Pontuação Final CV: (acertos/itens avaliados)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        13872,
+        144
+      ],
+      "id": "d4adb539-49cc-470d-be17-6404e9f64b3d",
+      "name": "Append row in correction sheet",
+      "credentials": {
+        "googleApi": {
+          "id": "ti5im2dhY8vSMlFa",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "maxItems": 120,
+        "keep": "lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        960,
+        176
+      ],
+      "id": "0ffa65b1-1b72-4c20-a455-4b70f520e302",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    resumeLink: $json['Currículo:'],\n    parentRunIndex: $runIndex,\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2016,
+        464
+      ],
+      "id": "1227678d-a0e7-4b0a-9c69-b922bfbac828",
+      "name": "Code in JavaScript",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    deliveryData: $('Loop Over Items').item.json,\n    resumeCorrection: $json.resumeCorrection,\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2880,
+        432
+      ],
+      "id": "c3b27c36-4113-4771-9ea4-a322445761c0",
+      "name": "Code in JavaScript1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "errorMessage": "[Resume Correction] Erro ao inserir dados na planilha"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        3456,
+        864
+      ],
+      "id": "05330c31-0258-4f1a-b727-5dc5661c82a1",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Corrigido?": "Erro",
+            "ID": "={{ $('Loop Over Items').item.json.ID}}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "Carimbo de data/hora",
+              "displayName": "Carimbo de data/hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Endereço de e-mail",
+              "displayName": "Endereço de e-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nome Completo:",
+              "displayName": "Nome Completo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "E-mail:",
+              "displayName": "E-mail:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Whatsapp:",
+              "displayName": "Whatsapp:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cidade e Estado:  ",
+              "displayName": "Cidade e Estado:  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Currículo:",
+              "displayName": "Currículo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link LinkedIn:",
+              "displayName": "Link LinkedIn:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "displayName": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, qual o curso e a instituição?",
+              "displayName": "Se sim, qual o curso e a instituição?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "displayName": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "displayName": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Marque as tecnologias com as quais você tem experiência:",
+              "displayName": "Marque as tecnologias com as quais você tem experiência:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "displayName": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "displayName": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "displayName": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "displayName": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "displayName": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pretensão salarial:",
+              "displayName": "Pretensão salarial:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista C",
+              "displayName": "Convite: Entrevista C",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista Téc",
+              "displayName": "Convite: Entrevista Téc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Corrigido?",
+              "displayName": "Corrigido?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3184,
+        736
+      ],
+      "id": "e135c812-cdc4-4368-b09d-889a11f24f4d",
+      "name": "Update row status to error",
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yEN7AxIn8url6dws",
+          "name": "PdA - Google Sheets"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  json: {\n    linkedinProfileUrls: $input.all().map(item => JSON.stringify(item.json.deliveryData['Link LinkedIn:'])),\n    parentRunIndex: $runIndex,\n    rowIds: $input.all().map(item => item.json.deliveryData.ID),\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5296,
+        384
+      ],
+      "id": "cc575c40-171f-4d4c-bf72-274d36fdf12c",
+      "name": "Code in JavaScript2",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "errorMessage": "[Linkedin Fetch Profile Data] Erro ao inserir dados na planilha"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        6944,
+        1008
+      ],
+      "id": "24af3e92-b5eb-4c6e-a7fa-ee5ee843fc7d",
+      "name": "Stop and Error1"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Corrigido?": "Erro",
+            "ID": "={{ $json.rowId }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "Carimbo de data/hora",
+              "displayName": "Carimbo de data/hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Endereço de e-mail",
+              "displayName": "Endereço de e-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nome Completo:",
+              "displayName": "Nome Completo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "E-mail:",
+              "displayName": "E-mail:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Whatsapp:",
+              "displayName": "Whatsapp:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cidade e Estado:  ",
+              "displayName": "Cidade e Estado:  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Currículo:",
+              "displayName": "Currículo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link LinkedIn:",
+              "displayName": "Link LinkedIn:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "displayName": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, qual o curso e a instituição?",
+              "displayName": "Se sim, qual o curso e a instituição?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "displayName": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "displayName": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Marque as tecnologias com as quais você tem experiência:",
+              "displayName": "Marque as tecnologias com as quais você tem experiência:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "displayName": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "displayName": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "displayName": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "displayName": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "displayName": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pretensão salarial:",
+              "displayName": "Pretensão salarial:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista C",
+              "displayName": "Convite: Entrevista C",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista Téc",
+              "displayName": "Convite: Entrevista Téc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Corrigido?",
+              "displayName": "Corrigido?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        6640,
+        816
+      ],
+      "id": "6f0d2ba1-a691-4034-b689-7cbdbd5046d7",
+      "name": "Update row status to error1",
+      "retryOnFail": false,
+      "credentials": {
+        "googleApi": {
+          "id": "ti5im2dhY8vSMlFa",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n   deliveryData: $('Loop Over Profiles').item.json.deliveryData,\n    resumeCorrection: $('Loop Over Profiles').item.json.resumeCorrection,\n    linkedinCorrection: $json.linkedinCorrection,\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        10368,
+        368
+      ],
+      "id": "de865ea8-5997-4ffc-b076-86289b29039f",
+      "name": "Code in JavaScript3",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($runIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        11504,
+        816
+      ],
+      "id": "fe65b705-53e1-416f-bdf0-e79681009f0e",
+      "name": "Wait3",
+      "webhookId": "1a9d75fe-e5cc-49d1-a769-5d0be146b2e1"
+    },
+    {
+      "parameters": {
+        "errorMessage": "[Linkedin Correction] Erro ao inserir dados na planilha"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        10976,
+        832
+      ],
+      "id": "f57ff6a6-2221-4c1d-8196-6766b59e56fc",
+      "name": "Stop and Error2"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Corrigido?": "Erro",
+            "ID": "={{ $('Loop Over Profiles').item.json.deliveryData.ID }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "Carimbo de data/hora",
+              "displayName": "Carimbo de data/hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Endereço de e-mail",
+              "displayName": "Endereço de e-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nome Completo:",
+              "displayName": "Nome Completo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "E-mail:",
+              "displayName": "E-mail:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Whatsapp:",
+              "displayName": "Whatsapp:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cidade e Estado:  ",
+              "displayName": "Cidade e Estado:  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Currículo:",
+              "displayName": "Currículo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link LinkedIn:",
+              "displayName": "Link LinkedIn:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "displayName": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, qual o curso e a instituição?",
+              "displayName": "Se sim, qual o curso e a instituição?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "displayName": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "displayName": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Marque as tecnologias com as quais você tem experiência:",
+              "displayName": "Marque as tecnologias com as quais você tem experiência:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "displayName": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "displayName": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "displayName": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "displayName": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "displayName": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pretensão salarial:",
+              "displayName": "Pretensão salarial:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista C",
+              "displayName": "Convite: Entrevista C",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista Téc",
+              "displayName": "Convite: Entrevista Téc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Corrigido?",
+              "displayName": "Corrigido?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        10640,
+        688
+      ],
+      "id": "2e723183-7459-47c1-8765-4ade4c01a893",
+      "name": "Update row status to error2",
+      "retryOnFail": false,
+      "credentials": {
+        "googleApi": {
+          "id": "ti5im2dhY8vSMlFa",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        9072,
+        160
+      ],
+      "id": "71e0dfb8-f7da-4f99-b348-43f98f0c4aee",
+      "name": "Loop Over Profiles"
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4864,
+        176
+      ],
+      "id": "40f89e47-b8f0-41fe-aac2-fb472b46a438",
+      "name": "Grouping LinkedIn in 10"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $('Grouping LinkedIn in 10').all().map((item, i) => {\n  return {\n  json: {\n    deliveryData: item.json.deliveryData,\n    resumeCorrection: item.json.resumeCorrection,\n    linkedinProfileData: $input.all()[i].json.linkinProfileData,\n  }\n}\n})\n\nreturn items\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6144,
+        448
+      ],
+      "id": "7b314f76-6c84-4d23-beae-c31bc9d602c2",
+      "name": "Code in JavaScript4",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6251b405-665c-4c23-845c-88ceaf321e4d",
+              "leftValue": "={{ $json.deliveryData }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4acfaada-a42c-4288-8305-690913163434",
+              "leftValue": "={{ $json.resumeCorrection }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "006d1211-b4cb-4a63-adca-d97696d36a03",
+              "leftValue": "={{ $json.linkedinProfileData }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        7696,
+        160
+      ],
+      "id": "564e8936-7667-4a5f-bc8f-8c48c1252a1a",
+      "name": "Filter2"
+    },
+    {
+      "parameters": {
+        "errorMessage": "[Saving Results] Erro ao inserir dados na planilha"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        15776,
+        656
+      ],
+      "id": "c38778b9-af95-458e-a7da-1ee0e9caf209",
+      "name": "Stop and Error3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const rowsIds = $('Code in JavaScript2').all().flatMap((item) => item.json.rowIds.map(id => ({rowId: id})))\n\nreturn rowsIds"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6096,
+        656
+      ],
+      "id": "f902d672-026e-4df7-ae87-775688db7d01",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "YPJOxFS9XYcfpM3jwxzcx",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/YPJOxFS9XYcfpM3jwxzcx",
+          "cachedResultName": "[PS] Linkedin Fetch Profiles"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        5760,
+        464
+      ],
+      "name": "Call [PS] Linkedin Fetch Profile",
+      "id": "e81b768e-681f-4dae-88f3-ced029ef56c9",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        6384,
+        656
+      ],
+      "id": "97e0d5dc-8831-4bec-8c2b-6c1fa01bc884",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "ejNWjfTgM6DOi5givBsjj",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/ejNWjfTgM6DOi5givBsjj",
+          "cachedResultName": "[PS] Linkedin Correction"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        9600,
+        304
+      ],
+      "name": "Call [PS] Linkedin Correction",
+      "id": "853610bb-b1f1-4e76-8a20-4bd0bd5566ed",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    linkedinProfileData: $json.linkedinProfileData,\n    parentRunIndex: $runIndex\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9296,
+        256
+      ],
+      "id": "821e8fba-d370-4887-99f0-21bc3d7006e2",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($runIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        12912,
+        160
+      ],
+      "id": "91072860-5992-4851-afa9-0109a4f98d32",
+      "name": "Wait2",
+      "webhookId": "f6571ac2-f17c-42ce-a313-e10e99bdcd33"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        12512,
+        144
+      ],
+      "id": "4b16923b-ea6c-4373-9b92-fee0b5a1bd0e",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Xm71c1EoCVk990sSXNBi1zJ1Qa8cMULs-uUXXaZnx8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Corrigido?": "Erro",
+            "ID": "={{ $json.deliveryData.ID }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "Carimbo de data/hora",
+              "displayName": "Carimbo de data/hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Endereço de e-mail",
+              "displayName": "Endereço de e-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nome Completo:",
+              "displayName": "Nome Completo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "E-mail:",
+              "displayName": "E-mail:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Whatsapp:",
+              "displayName": "Whatsapp:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cidade e Estado:  ",
+              "displayName": "Cidade e Estado:  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Currículo:",
+              "displayName": "Currículo:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link LinkedIn:",
+              "displayName": "Link LinkedIn:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "displayName": "Você está cursando ou já concluiu algum curso na área de tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, qual o curso e a instituição?",
+              "displayName": "Se sim, qual o curso e a instituição?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "displayName": "Você já teve alguma experiência profissional como desenvolvedor?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "displayName": "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Marque as tecnologias com as quais você tem experiência:",
+              "displayName": "Marque as tecnologias com as quais você tem experiência:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "displayName": "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "displayName": "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "displayName": "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "displayName": "Por que você quer atuar como desenvolvedor(a) Full Stack?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "displayName": "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pretensão salarial:",
+              "displayName": "Pretensão salarial:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista C",
+              "displayName": "Convite: Entrevista C",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Convite: Entrevista Téc",
+              "displayName": "Convite: Entrevista Téc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Corrigido?",
+              "displayName": "Corrigido?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        15104,
+        624
+      ],
+      "id": "e295a31d-7c82-42e1-ac6d-9b1bf771f81c",
+      "name": "Update row status to errror",
+      "retryOnFail": false,
+      "credentials": {
+        "googleApi": {
+          "id": "ti5im2dhY8vSMlFa",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        192
+      ],
+      "id": "c812fa5b-ec2a-4b52-8469-baf8130438c0",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1WqtbhrtgR7DMBi8D_tGEVbeJELLOYuWYfcsT2brXCqk/edit?gid=156437006#gid=156437006",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 156437006,
+          "mode": "list",
+          "cachedResultName": "Respostas ao formulário 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WqtbhrtgR7DMBi8D_tGEVbeJELLOYuWYfcsT2brXCqk/edit#gid=156437006"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Corrigido?",
+              "lookupValue": "Pendente"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        176,
+        192
+      ],
+      "id": "3867f1e6-79dc-475c-b455-be35cc55190f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yEN7AxIn8url6dws",
+          "name": "PdA - Google Sheets"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao pegar os dados da planilha!"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        624,
+        544
+      ],
+      "id": "e13e035e-5ba4-418c-859f-bb0b4af31b48",
+      "name": "Stop and Error4"
+    }
+  ],
+  "pinData": {
+    "Wait": [
+      {
+        "json": {
+          "deliveryData": {
+            "Carimbo de data/hora": "22/05/2025 08:55:31",
+            "Endereço de e-mail": "raianesirlene9@gmail.com",
+            "Nome Completo:": "Raiane Sirlene da Silva ",
+            "E-mail:": "raianesirlene9@gmail.com",
+            "Whatsapp:": 37998229663,
+            "Cidade e Estado:  ": "Itaúna, Minas Gerias",
+            "Currículo:": "https://drive.google.com/file/d/1w3Xx-DAh0LQmstOJYe92IHA2yQgj0jKH/view?usp=sharing",
+            "Link LinkedIn:": "https://www.linkedin.com/in/raiane-sirlene-silva/",
+            "Você está cursando ou já concluiu algum curso na área de tecnologia?": "Sim, estou cursando",
+            "Se sim, qual o curso e a instituição?": "Engenharia de Computação UFBRA",
+            "Você já teve alguma experiência profissional como desenvolvedor?": "Não, mas já fiz projetos pessoais",
+            "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):": "",
+            "Marque as tecnologias com as quais você tem experiência:": "HTML, CSS e JavaScript, Banco de Dados NoSQL (MongoDB, Firebase), Git e GitHub",
+            "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?": "Python",
+            "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.": "https://github.com/Silva-Raiane",
+            "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.": "Pokedex, fiz o uso de API e os desafios foi deixar o código mais limpo possível",
+            "Por que você quer atuar como desenvolvedor(a) Full Stack?": "Gosto que ver o projeto criando forma, desde o funcionamento quanto a interação com o usuário ",
+            "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?": "conhecimento, a área está aquecida e muitas pessoas são ótimas profissionais e tem acesso a conhecimento que coloca ela a frente e também oportunidades, transicionar de carreira pode ser difícil quando não está nos padrões que as empresas procuram",
+            "Pretensão salarial:": 2100,
+            "Convite: Entrevista C": "",
+            "Convite: Entrevista Téc": "",
+            "Corrigido?": "",
+            "ID": "raianesirlene9@gmail.com-22052025-085531"
+          },
+          "resumeCorrection": {
+            "sections": {
+              "header": {
+                "status": [
+                  "⚠️ Link do Github",
+                  "⚠️ Cidade e estado em que resido atualmente",
+                  "⚠️ Número de celular",
+                  "⚠️ Email"
+                ],
+                "feedback": "Faltam o link do GitHub, a localização (cidade/estado), número de celular e e‑mail no cabeçalho."
+              },
+              "objective": {
+                "status": [
+                  "⚠️ Campo inexistente"
+                ],
+                "feedback": "A seção de objetivo está ausente; inclua um objetivo claro e direcionado ao cargo desejado."
+              },
+              "summary": {
+                "status": [
+                  "⚠️ Não contém conquistas, interesses e metas profissionais",
+                  "⚠️ Ultrapassa 5 linhas"
+                ],
+                "feedback": "O resumo é muito genérico, não apresenta conquistas nem metas, e ultrapassa o limite de 5 linhas."
+              },
+              "education": {
+                "status": [
+                  "✅ Tudo certo"
+                ],
+                "feedback": "Formação acadêmica está bem estruturada e em ordem cronológica."
+              },
+              "projects": {
+                "status": [
+                  "⚠️ Descrição, resultados e link de acesso",
+                  "⚠️ Tecnologias utilizadas em cada um deles destacadas"
+                ],
+                "feedback": "A seção de projetos não contém descrições, resultados, links ou destaque das tecnologias usadas."
+              },
+              "professional_experience": {
+                "status": [
+                  "⚠️ Cargo, nome da empresa e duração",
+                  "⚠️ Descrição das atividades realizadas, com destaque de resultados e conquistas"
+                ],
+                "feedback": "Experiências profissionais não apresentam cargo, empresa, período ou resultados concretos."
+              },
+              "technical_skills": {
+                "status": [
+                  "⚠️ Linguagens e frameworks"
+                ],
+                "feedback": "A lista de habilidades técnicas está incompleta; inclua linguagens, frameworks e nível de proficiência."
+              },
+              "courses": {
+                "status": [
+                  "⚠️ Título do Curso",
+                  "⚠️ Carga horária"
+                ],
+                "feedback": "Os cursos listados não especificam título nem carga horária."
+              },
+              "final_review": {
+                "status": [
+                  "⚠️ Diminuir número de páginas"
+                ],
+                "feedback": "O currículo está extenso; considere reduzir para no máximo duas páginas."
+              }
+            },
+            "general_comments": "O CV precisa ser mais focado em tecnologia: adicione objetivo, destaque projetos com tecnologias e resultados, detalhe habilidades técnicas, inclua informações de contato completas e elimine dados pessoais desnecessários."
+          },
+          "linkedinProfileData": {
+            "id": "ACoAAERQREcB6umLTr9MvxHh90ONT2-VrzwcQ3Q",
+            "publicIdentifier": "raiane-sirlene-silva",
+            "linkedinUrl": "https://www.linkedin.com/in/raiane-sirlene-silva",
+            "firstName": "Raiane",
+            "lastName": "Silva",
+            "headline": "Estagiária | Estudante de Engenharia de Computação | Python • Dados • Automação | Tec. Eletroeletrônica",
+            "openToWork": false,
+            "hiring": false,
+            "premium": false,
+            "influencer": false,
+            "memorialized": false,
+            "location": {
+              "linkedinText": "Itaúna, Minas Gerais, Brazil",
+              "countryCode": "BR",
+              "parsed": {
+                "text": "Itaúna, Brazil",
+                "countryCode": "BR",
+                "regionCode": null,
+                "country": "Brazil",
+                "countryFull": "Brazil",
+                "state": "Minas Gerais",
+                "city": "Itaúna"
+              }
+            },
+            "objectUrn": "1146111047",
+            "registeredAt": "2023-06-19T20:43:54.322Z",
+            "topSkills": "Python • Administração • Análise de dados • AutoCAD • Microsoft Power BI",
+            "connectionsCount": 73,
+            "followerCount": 77,
+            "verified": false,
+            "about": "Olá, sou Raiane, estudante de Engenharia de Computação e alguém que gosta de entender como as coisas realmente funcionam — no papel, na prática e nas pessoas envolvidas. Atualmente, estagio na Stellantis Itaúna (PCMA-CMP), onde estou aprendendo a enxergar a indústria por dentro: processos, padrões, qualidade, falhas, correções e a responsabilidade que existe por trás de cada detalhe.\n\nAntes disso, atuei no Departamento Pessoal, em contato direto com pessoas, prazos e situações delicadas. Essa experiência me ensinou a ouvir com atenção, a ter cuidado com o impacto do meu trabalho e a entender que processos existem para servir pessoas — e não o contrário. Levo esse aprendizado comigo até hoje.\n\nTenho formação técnica em Eletroeletrônica pelo SENAI e sigo estudando Python, automação, dados, Excel e Power BI, não por obrigação, mas por curiosidade. Gosto de aprender fazendo, de evoluir um pouco a cada dia e de construir conhecimento com sentido.\n\nNos intervalos, me encontro na música, na literatura, no silêncio e nas ideias que surgem quando observo o mundo com calma.\n\n📚 Estudando: Python • Dados • Automação • Engenharia de Computação\n🎧 Nas horas vagas: música, desenho, literatura, arte, contemplação e ideias que me conectam ao mundo.",
+            "currentPosition": [
+              {
+                "companyId": "66256333",
+                "companyLinkedinUrl": "https://www.linkedin.com/company/66256333/",
+                "companyName": "Stellantis",
+                "dateRange": {
+                  "start": {
+                    "month": 1,
+                    "year": 2026,
+                    "day": null
+                  },
+                  "end": null
+                }
+              }
+            ],
+            "profileTopEducation": [
+              {
+                "schoolId": "3487013",
+                "companyId": "93375477",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/93375477/",
+                "schoolName": "UFBRA"
+              }
+            ],
+            "profileActions": [],
+            "profilePicture": {
+              "url": "https://media.licdn.com/dms/image/v2/D4D03AQETIRXz9aYqWQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715007032656?e=1771459200&v=beta&t=vn0kzw_4-w7ptcXkw6IaYXwWL-dd9kHyLeNCfYlq84k",
+              "sizes": [
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQETIRXz9aYqWQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715007032656?e=1771459200&v=beta&t=vn0kzw_4-w7ptcXkw6IaYXwWL-dd9kHyLeNCfYlq84k",
+                  "width": 800,
+                  "height": 800,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQETIRXz9aYqWQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715007032656?e=1771459200&v=beta&t=L8QXas2pb_RXEyqok4-E3gacjAvZkgiAxPNHx-3b_04",
+                  "width": 400,
+                  "height": 400,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQETIRXz9aYqWQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1715007032656?e=1771459200&v=beta&t=Kqs4CFr6lH98rkuZPECjwJG9BsUtYjX17n2gVzLhoqQ",
+                  "width": 200,
+                  "height": 200,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQETIRXz9aYqWQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1715007032656?e=1771459200&v=beta&t=DrhA7wkmppUZhqD9ZoulENH252JbRLK7Mn3aXBJN-P8",
+                  "width": 100,
+                  "height": 100,
+                  "expiresAt": 1771459200000
+                }
+              ]
+            },
+            "coverPicture": {
+              "url": "https://media.licdn.com/dms/image/v2/D4D16AQGoyuJbjpBHEg/profile-displaybackgroundimage-shrink_350_1400/B4DZhNSp88GQAY-/0/1753643393941?e=1771459200&v=beta&t=L4C4UylWpwt6ZuTGbPHhJ0SgfOtVyB7TILBj_d21BGI",
+              "sizes": [
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D16AQGoyuJbjpBHEg/profile-displaybackgroundimage-shrink_350_1400/B4DZhNSp88GQAY-/0/1753643393941?e=1771459200&v=beta&t=L4C4UylWpwt6ZuTGbPHhJ0SgfOtVyB7TILBj_d21BGI",
+                  "width": 1400,
+                  "height": 350,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D16AQGoyuJbjpBHEg/profile-displaybackgroundimage-shrink_200_800/B4DZhNSp88GQAU-/0/1753643393941?e=1771459200&v=beta&t=VxlS5t0IyLbR0Z0VCuMogUyuu6dV1Ft_TNdCNVpzI60",
+                  "width": 800,
+                  "height": 200,
+                  "expiresAt": 1771459200000
+                }
+              ]
+            },
+            "photo": "https://media.licdn.com/dms/image/v2/D4D03AQETIRXz9aYqWQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715007032656?e=1771459200&v=beta&t=vn0kzw_4-w7ptcXkw6IaYXwWL-dd9kHyLeNCfYlq84k",
+            "services": null,
+            "experience": [
+              {
+                "position": "Estagiário",
+                "location": "Itaúna, Minas Gerais, Brazil",
+                "employmentType": "Internship",
+                "workplaceType": null,
+                "companyName": "Stellantis",
+                "companyLinkedinUrl": "https://www.linkedin.com/company/stellantis/",
+                "companyId": "66256333",
+                "companyUniversalName": "stellantis",
+                "duration": "2 mos",
+                "description": null,
+                "skills": [
+                  "Microsoft Power BI",
+                  "Infraestrutura de tecnologia da informação"
+                ],
+                "startDate": {
+                  "month": "Jan",
+                  "year": 2026,
+                  "text": "Jan 2026"
+                },
+                "endDate": {
+                  "text": "Present"
+                },
+                "companyLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/C4D0BAQHURyWugU5A4g/company-logo_400_400/company-logo_400_400/0/1630577492034/stellantis_logo?e=1771459200&v=beta&t=zpSpYL1fkaMBmA-rgKiQgKDejAiQfRJr5usf4RYNt78",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4D0BAQHURyWugU5A4g/company-logo_400_400/company-logo_400_400/0/1630577492034/stellantis_logo?e=1771459200&v=beta&t=zpSpYL1fkaMBmA-rgKiQgKDejAiQfRJr5usf4RYNt78",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4D0BAQHURyWugU5A4g/company-logo_200_200/company-logo_200_200/0/1630577492034/stellantis_logo?e=1771459200&v=beta&t=G_9K4JSgznqZ-GZFLenmpxKTk49cb6pWznSDprTOXsY",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4D0BAQHURyWugU5A4g/company-logo_100_100/company-logo_100_100/0/1630577492034/stellantis_logo?e=1771459200&v=beta&t=SGjGKwnNjt-7ILGqXRYB8IoPWK6NpMqJBl0i7U3IAUA",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "position": "Assistente administrativo",
+                "location": "Itaúna, Minas Gerais, Brazil",
+                "employmentType": "Full-time",
+                "workplaceType": "Hybrid",
+                "companyName": "Vero",
+                "companyLinkedinUrl": "https://www.linkedin.com/company/14047183/",
+                "companyId": "14047183",
+                "duration": "1 yr 1 mo",
+                "description": null,
+                "skills": [
+                  "Microsoft Office",
+                  "Microsoft Power BI",
+                  "Análise de dados",
+                  "Administração"
+                ],
+                "experienceGroupId": "ee83e3e705b2628bb41766ec21987492185b9d4a",
+                "startDate": {
+                  "month": "Jan",
+                  "year": 2025,
+                  "text": "Jan 2025"
+                },
+                "endDate": {
+                  "month": "Jan",
+                  "year": 2026,
+                  "text": "Jan 2026"
+                },
+                "companyLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_400_400/company-logo_400_400/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=1gXiOjsAhNfETCSMxZOVyC4oNnIGqmgVlZLv8vS7bPU",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_400_400/company-logo_400_400/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=1gXiOjsAhNfETCSMxZOVyC4oNnIGqmgVlZLv8vS7bPU",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_200_200/company-logo_200_200/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=5HmqyVhBmZYPXpe9qCwrHxhEUiG5llsMCw1DkTMffQs",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_100_100/company-logo_100_100/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=kg51GrsOCZ7d18TCxWwe09G4OhzDkk4V-Id_DDdHnrI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "position": "auxiliar de departamento pessoal",
+                "location": "Itaúna, Minas Gerais, Brazil",
+                "employmentType": "Full-time",
+                "workplaceType": "Hybrid",
+                "companyName": "Vero",
+                "companyLinkedinUrl": "https://www.linkedin.com/company/14047183/",
+                "companyId": "14047183",
+                "duration": "1 yr 5 mos",
+                "description": null,
+                "skills": [
+                  "Microsoft Office",
+                  "Administração"
+                ],
+                "experienceGroupId": "ee83e3e705b2628bb41766ec21987492185b9d4a",
+                "startDate": {
+                  "month": "Aug",
+                  "year": 2023,
+                  "text": "Aug 2023"
+                },
+                "endDate": {
+                  "month": "Dec",
+                  "year": 2024,
+                  "text": "Dec 2024"
+                },
+                "companyLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_400_400/company-logo_400_400/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=1gXiOjsAhNfETCSMxZOVyC4oNnIGqmgVlZLv8vS7bPU",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_400_400/company-logo_400_400/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=1gXiOjsAhNfETCSMxZOVyC4oNnIGqmgVlZLv8vS7bPU",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_200_200/company-logo_200_200/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=5HmqyVhBmZYPXpe9qCwrHxhEUiG5llsMCw1DkTMffQs",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_100_100/company-logo_100_100/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=kg51GrsOCZ7d18TCxWwe09G4OhzDkk4V-Id_DDdHnrI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "position": "Jovem aprendiz",
+                "location": "Itaúna, Minas Gerais, Brazil",
+                "employmentType": "Part-time",
+                "workplaceType": "On-site",
+                "companyName": "Vero",
+                "companyLinkedinUrl": "https://www.linkedin.com/company/14047183/",
+                "companyId": "14047183",
+                "duration": "2 yrs 1 mo",
+                "description": null,
+                "skills": [
+                  "Microsoft Office",
+                  "Administração"
+                ],
+                "experienceGroupId": "ee83e3e705b2628bb41766ec21987492185b9d4a",
+                "startDate": {
+                  "month": "Oct",
+                  "year": 2021,
+                  "text": "Oct 2021"
+                },
+                "endDate": {
+                  "month": "Oct",
+                  "year": 2023,
+                  "text": "Oct 2023"
+                },
+                "companyLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_400_400/company-logo_400_400/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=1gXiOjsAhNfETCSMxZOVyC4oNnIGqmgVlZLv8vS7bPU",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_400_400/company-logo_400_400/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=1gXiOjsAhNfETCSMxZOVyC4oNnIGqmgVlZLv8vS7bPU",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_200_200/company-logo_200_200/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=5HmqyVhBmZYPXpe9qCwrHxhEUiG5llsMCw1DkTMffQs",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHXqyDrQGLgaw/company-logo_100_100/company-logo_100_100/0/1712686066001/verointernet_logo?e=1771459200&v=beta&t=kg51GrsOCZ7d18TCxWwe09G4OhzDkk4V-Id_DDdHnrI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              }
+            ],
+            "education": [
+              {
+                "schoolName": "UFBRA",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/93375477/",
+                "schoolId": "93375477",
+                "degree": "Bacharelado",
+                "fieldOfStudy": "Engenharia de Computação",
+                "skills": [
+                  "Python",
+                  "Sistemas de informação computacionais",
+                  "Análise de dados",
+                  "Microsoft Power BI",
+                  "Infraestrutura de tecnologia da informação"
+                ],
+                "startDate": {
+                  "month": "Mar",
+                  "year": 2025,
+                  "text": "Mar 2025"
+                },
+                "endDate": {
+                  "month": "Mar",
+                  "year": 2030,
+                  "text": "Mar 2030"
+                },
+                "period": "Mar 2025 - Mar 2030",
+                "schoolLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEjEuJ4HZp01A/company-logo_400_400/company-logo_400_400/0/1683873353174?e=1771459200&v=beta&t=pt8fvlho6YeM8WdtS4jXPAv-fZ0Y8PZNnbkbtyHYodM",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEjEuJ4HZp01A/company-logo_400_400/company-logo_400_400/0/1683873353174?e=1771459200&v=beta&t=pt8fvlho6YeM8WdtS4jXPAv-fZ0Y8PZNnbkbtyHYodM",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEjEuJ4HZp01A/company-logo_200_200/company-logo_200_200/0/1683873353174?e=1771459200&v=beta&t=dhEPi5KK3d-CqMYIVV2S6UOESJBBPDznahIDwdfq8Qs",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEjEuJ4HZp01A/company-logo_100_100/company-logo_100_100/0/1683873353174?e=1771459200&v=beta&t=RwtYE_52z4vB_PbRjrEluKM50zNZiI4EOIWOQCtCkEA",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "schoolName": "Programadores do Amanhã",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/41649625/",
+                "schoolId": "41649625",
+                "degree": "Programação ",
+                "fieldOfStudy": null,
+                "skills": [
+                  "Sistemas de informação computacionais"
+                ],
+                "startDate": {
+                  "month": "May",
+                  "year": 2023,
+                  "text": "May 2023"
+                },
+                "endDate": {
+                  "month": "May",
+                  "year": 2024,
+                  "text": "May 2024"
+                },
+                "period": "May 2023 - May 2024",
+                "schoolLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_400_400-alternative/company-logo_400_400-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=b_tggBNZfUAYH0bTEwDZ7ofQlR65ue9K4GZTVJZkOXk",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_400_400-alternative/company-logo_400_400-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=b_tggBNZfUAYH0bTEwDZ7ofQlR65ue9K4GZTVJZkOXk",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_400_400/company-logo_400_400/0/1630642648973/programadoresdoamanha_logo?e=1771459200&v=beta&t=kVEJgwBnxU2h2UOhx7hJB51RCXVJxFkHjItBTz0U0CY",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_200_200/company-logo_200_200/0/1630642648972/programadoresdoamanha_logo?e=1771459200&v=beta&t=bkvfhSzTRzcqMPAUCosIujoIamRrJvTImlyi-SdnM5o",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_200_200-alternative/company-logo_200_200-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=_6yeYQ6PFcnKLTrRE_GzRojjQC6PBd8alHZRm3h04OA",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_100_100-alternative/company-logo_100_100-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=gDSyrOjK7izMJ7ZTqlEWdBjjOuweM7Bbe-pun-_lOJE",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_100_100/company-logo_100_100/0/1630642648972/programadoresdoamanha_logo?e=1771459200&v=beta&t=9uUcuy9WTI-1X6PFp6xIVn6URvuPIItn11n_1DYyyzM",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "schoolName": "DIO",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/15157373/",
+                "schoolId": "15157373",
+                "degree": "Formação Javascript Developer",
+                "fieldOfStudy": "Programação ",
+                "skills": [],
+                "startDate": null,
+                "endDate": {
+                  "month": "Jan",
+                  "year": 2024,
+                  "text": "Jan 2024"
+                },
+                "period": "Jan 2024",
+                "schoolLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHhxyVOXCdLWg/company-logo_400_400/B4DZu91x1DJQAc-/0/1768416550851/dio_makethechange_logo?e=1771459200&v=beta&t=Gt4-zZujhma5yUQ8LADVnKrcnA92_NUwtIFfl4JeJWg",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHhxyVOXCdLWg/company-logo_400_400/B4DZu91x1DJQAc-/0/1768416550851/dio_makethechange_logo?e=1771459200&v=beta&t=Gt4-zZujhma5yUQ8LADVnKrcnA92_NUwtIFfl4JeJWg",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHhxyVOXCdLWg/company-logo_200_200/B4DZu91x1DJQAM-/0/1768416550851/dio_makethechange_logo?e=1771459200&v=beta&t=HWjC6QGAipmaHKMuBTRECagrxM_UfO8qERIj3FnB2U0",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQHhxyVOXCdLWg/company-logo_100_100/B4DZu91x1DJQAU-/0/1768416550851/dio_makethechange_logo?e=1771459200&v=beta&t=jt255bopBjKfcK-tVf984EeQS60DqLiLLjQik2b-Uks",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "schoolName": "SENAI Itaúna CETEF Marcelino Corradi",
+                "schoolLinkedinUrl": "https://www.linkedin.com/search/results/all/?keywords=SENAI+Ita%C3%BAna+CETEF+Marcelino+Corradi",
+                "schoolId": null,
+                "degree": "Ensino Técnico",
+                "fieldOfStudy": "Eletroeletrônica",
+                "skills": [
+                  "AutoCAD"
+                ],
+                "startDate": {
+                  "month": "Oct",
+                  "year": 2021,
+                  "text": "Oct 2021"
+                },
+                "endDate": {
+                  "month": "May",
+                  "year": 2023,
+                  "text": "May 2023"
+                },
+                "period": "Oct 2021 - May 2023",
+                "schoolLogo": null
+              }
+            ],
+            "certifications": [],
+            "projects": [],
+            "volunteering": [],
+            "receivedRecommendations": [],
+            "skills": [
+              {
+                "name": "Infraestrutura de tecnologia da informação",
+                "positions": [
+                  "Estagiário at Stellantis",
+                  "UFBRA"
+                ]
+              },
+              {
+                "name": "Sistemas de informação computacionais",
+                "positions": [
+                  "2 educational experiences at UFBRA and 1 other school"
+                ]
+              },
+              {
+                "name": "Análise de dados",
+                "positions": [
+                  "Assistente administrativo at Vero",
+                  "UFBRA"
+                ]
+              },
+              {
+                "name": "Administração",
+                "positions": [
+                  "3 experiences across Vero and 1 other company"
+                ]
+              },
+              {
+                "name": "Microsoft Power BI",
+                "positions": [
+                  "2 experiences across Stellantis and 1 other company",
+                  "UFBRA"
+                ]
+              },
+              {
+                "name": "AutoCAD"
+              },
+              {
+                "name": "Microsoft Office",
+                "positions": [
+                  "3 experiences across Vero and 1 other company"
+                ]
+              },
+              {
+                "name": "Python",
+                "positions": [
+                  "UFBRA"
+                ]
+              }
+            ],
+            "publications": [],
+            "courses": [
+              {
+                "title": "Auto CAD 2D e 3D - CNI Centro de Formação Profissional",
+                "number": "Carga Horária: 52 horas"
+              },
+              {
+                "title": "Empreendedorismo e Sucesso Profissional - CNI Centro de Formação Profissional",
+                "number": "Carga Horária: 15 horas"
+              },
+              {
+                "title": "Gestão Empresarial - CNI Centro de Formação Profissional",
+                "number": "Carga Horária: 83horas"
+              },
+              {
+                "title": "Informática - CNI Centro de Formação Profissional",
+                "number": "Carga Horária: 52 horas"
+              },
+              {
+                "title": "Montagem & Manutenção - CNI Centro de Formação Profissional",
+                "number": "Carga Horária: 28 horas"
+              }
+            ],
+            "patents": [],
+            "honorsAndAwards": [],
+            "languages": [
+              {
+                "name": "Espanhol",
+                "proficiency": "Limited working proficiency"
+              },
+              {
+                "name": "Inglês",
+                "proficiency": "Professional working proficiency"
+              }
+            ],
+            "causes": [],
+            "featured": null,
+            "composeOptionType": "UPSELL",
+            "moreProfiles": [
+              {
+                "id": "ACoAADTRQM8B_RW2Ad-IlA7VpK_yu5FMfE2BS0Y",
+                "firstName": "Vanessa",
+                "lastName": "Farias",
+                "publicIdentifier": "vr-farias",
+                "linkedinUrl": "https://www.linkedin.com/in/vr-farias"
+              },
+              {
+                "id": "ACoAAAxs8PgBT1qih02XrnNoz_6h_o7d8EYrOZ0",
+                "firstName": "Stéphanie",
+                "lastName": "Rangel",
+                "publicIdentifier": "stephaniecrangel",
+                "linkedinUrl": "https://www.linkedin.com/in/stephaniecrangel"
+              },
+              {
+                "id": "ACoAAF9XbecB15zAFYv9_bTlclYajnjBvGFLTso",
+                "firstName": "Lavínia",
+                "lastName": "Antunes",
+                "publicIdentifier": "lavínia-antunes-433836387",
+                "linkedinUrl": "https://www.linkedin.com/in/lavínia-antunes-433836387"
+              },
+              {
+                "id": "ACoAAGET1qABSJqC5GKgCPBFqXDZMHGLGSVkHDk",
+                "firstName": "Wender",
+                "lastName": "Míler",
+                "publicIdentifier": "wender-míler-b94540395",
+                "linkedinUrl": "https://www.linkedin.com/in/wender-míler-b94540395"
+              },
+              {
+                "id": "ACoAADU-tfoBN_PAip04A5gbvhVwyOL3SSaUy-E",
+                "firstName": "FÁBIO",
+                "lastName": "AUGUSTO VILELA",
+                "publicIdentifier": "fábio-augusto-vilela-3b61b920b",
+                "linkedinUrl": "https://www.linkedin.com/in/fábio-augusto-vilela-3b61b920b"
+              },
+              {
+                "id": "ACoAADrOxbwBWQizKKXnygxmK5mWzjDdiLQzgHM",
+                "firstName": "Priscila",
+                "lastName": "Macedo",
+                "publicIdentifier": "priscila-macedo-224506236",
+                "linkedinUrl": "https://www.linkedin.com/in/priscila-macedo-224506236"
+              },
+              {
+                "id": "ACoAAA9QnGABberuh2iYEfBwFaGWBSLDaaCX9Ts",
+                "firstName": "Isac",
+                "lastName": "Sousa",
+                "publicIdentifier": "isac-sousa-96807072",
+                "linkedinUrl": "https://www.linkedin.com/in/isac-sousa-96807072"
+              },
+              {
+                "id": "ACoAADzMdMYBkHR_AxEKak8fTQfKjJgsxU09zg8",
+                "firstName": "Matheus",
+                "lastName": "Mendes",
+                "publicIdentifier": "matheusmendesreis",
+                "linkedinUrl": "https://www.linkedin.com/in/matheusmendesreis"
+              },
+              {
+                "id": "ACoAAD8ee4cBy8OX44iN0Ue7VOa9VnqXCRe4_NI",
+                "firstName": "Marcos",
+                "lastName": "Vinicius",
+                "publicIdentifier": "marcos-vinicius-4b3789256",
+                "linkedinUrl": "https://www.linkedin.com/in/marcos-vinicius-4b3789256"
+              },
+              {
+                "id": "ACoAADqAZDQBV3GXia4Lja0Rl0y7pQyVojcvpDc",
+                "firstName": "Andressa",
+                "lastName": "Ferreira",
+                "publicIdentifier": "andressa-ferreira-618849234",
+                "linkedinUrl": "https://www.linkedin.com/in/andressa-ferreira-618849234"
+              },
+              {
+                "id": "ACoAADfKscYBCdPzOpSFbRuGiekTwyJUE016Aio",
+                "firstName": "Cleverson",
+                "lastName": "Henriques",
+                "publicIdentifier": "henriquescleverson",
+                "linkedinUrl": "https://www.linkedin.com/in/henriquescleverson"
+              },
+              {
+                "id": "ACoAAB_NvCUBKiqDUMD53mSGF8T9-UZScekFVng",
+                "firstName": "Caique",
+                "lastName": "Chaves",
+                "publicIdentifier": "caique-chaves-a0583a12a",
+                "linkedinUrl": "https://www.linkedin.com/in/caique-chaves-a0583a12a"
+              },
+              {
+                "id": "ACoAADGc1CUBFmfSsfG_O-9IE-uXf-mMfXGVwAc",
+                "firstName": "Karen",
+                "lastName": "Ingrid",
+                "publicIdentifier": "kareningrid",
+                "linkedinUrl": "https://www.linkedin.com/in/kareningrid"
+              },
+              {
+                "id": "ACoAAEhsyfIB8y4Ly-GEZE-RPvRumnuxCOOyhLQ",
+                "firstName": "Nathan",
+                "lastName": "Vinícius",
+                "publicIdentifier": "nathan-vinícius-702b2029a",
+                "linkedinUrl": "https://www.linkedin.com/in/nathan-vinícius-702b2029a"
+              },
+              {
+                "id": "ACoAACBD6YQBm2c0VT7bjueteQzaa07RZTbct1Q",
+                "firstName": "Possidonio",
+                "lastName": "Neto",
+                "publicIdentifier": "posssidonio-neto",
+                "linkedinUrl": "https://www.linkedin.com/in/posssidonio-neto"
+              },
+              {
+                "id": "ACoAADFP9dUBcXokuQ4XiMHE7YwFgbhQyw28HfY",
+                "firstName": "Pedro",
+                "lastName": "Paulo",
+                "publicIdentifier": "pedro-paulo-47109b1b1",
+                "linkedinUrl": "https://www.linkedin.com/in/pedro-paulo-47109b1b1"
+              },
+              {
+                "id": "ACoAACrev5cB_X22rwsvOYcCHJyTp8-5fQIrIco",
+                "firstName": "Thiago",
+                "lastName": "Monteiro",
+                "publicIdentifier": "thiago-monteiro-silva",
+                "linkedinUrl": "https://www.linkedin.com/in/thiago-monteiro-silva"
+              },
+              {
+                "id": "ACoAADnvTuMBEu9KGGquNil3htccFRuiZNTRb2Q",
+                "firstName": "Alexander",
+                "lastName": "Júnior",
+                "publicIdentifier": "alexander-júnior",
+                "linkedinUrl": "https://www.linkedin.com/in/alexander-júnior"
+              },
+              {
+                "id": "ACoAAC3e83cBqi6VR-AC1JqYOLdMSngSFRNINUk",
+                "firstName": "Vinícios",
+                "lastName": "Batista da Silva",
+                "publicIdentifier": "viniciossilva3",
+                "linkedinUrl": "https://www.linkedin.com/in/viniciossilva3"
+              },
+              {
+                "id": "ACoAABuynMEBGF6eJeS2BlyUhLLvF5_3CNg7pRo",
+                "firstName": "Fernanda",
+                "lastName": "Marques",
+                "publicIdentifier": "fernanda-felicissimo",
+                "linkedinUrl": "https://www.linkedin.com/in/fernanda-felicissimo"
+              },
+              {
+                "id": "ACoAAGGHWCMBkMC2mFOYDReR5ih08Xe74G9NHxc",
+                "firstName": "Asmaaa",
+                "lastName": "Asm",
+                "position": "Student at Stellantis",
+                "publicIdentifier": "asmaaa-asm-797b91397",
+                "linkedinUrl": "https://www.linkedin.com/in/asmaaa-asm-797b91397"
+              },
+              {
+                "id": "ACoAAGIQEp4BlNpF4Y4e1ihbb09vJ100EPtb9hk",
+                "firstName": "Mounir",
+                "lastName": "Laasiry",
+                "position": "‏الوجستيك‏ في ‏Stellantis‏",
+                "publicIdentifier": "mounir-laasiry-252b9339a",
+                "linkedinUrl": "https://www.linkedin.com/in/mounir-laasiry-252b9339a"
+              },
+              {
+                "id": "ACoAAGER4rUBgBEvHXBZeRYLlMS6DcWlN9_Iffc",
+                "firstName": "Mahassine",
+                "lastName": "Imad",
+                "position": "Team leader qualité  chez Stellantis",
+                "publicIdentifier": "mahassine-imad-b0549a395",
+                "linkedinUrl": "https://www.linkedin.com/in/mahassine-imad-b0549a395"
+              },
+              {
+                "id": "ACoAAGKFc_IBYUj5XhZ15C0Mxo2NrbB3VE-H1lY",
+                "firstName": "Youssef",
+                "lastName": "Bonne",
+                "position": "Technician at Stellantis",
+                "publicIdentifier": "youssef-bonne-b566823a1",
+                "linkedinUrl": "https://www.linkedin.com/in/youssef-bonne-b566823a1"
+              },
+              {
+                "id": "ACoAAGH4_34BtfOpgdUAbARD5M9RLZXS02DHnN0",
+                "firstName": "Nikoloz",
+                "lastName": "Chanturia",
+                "position": "Back Office Employee at Stellantis",
+                "publicIdentifier": "nikoloz-chanturia-0a658439a",
+                "linkedinUrl": "https://www.linkedin.com/in/nikoloz-chanturia-0a658439a"
+              },
+              {
+                "id": "ACoAAGCyN04Bbz6UM9EyY3yFYcnsrL65_OJNBZU",
+                "firstName": "Maryam",
+                "lastName": "Boubahta",
+                "position": "Opératrice chez Stellantis",
+                "publicIdentifier": "maryam-boubahta-692376393",
+                "linkedinUrl": "https://www.linkedin.com/in/maryam-boubahta-692376393"
+              },
+              {
+                "id": "ACoAAGJj-uMBBoXxy_PFJIig_vf-h5YiqcLMgIY",
+                "firstName": "Wilherson",
+                "lastName": "Aguiar Xavier",
+                "position": "Logística na Stellantis",
+                "publicIdentifier": "wilherson-aguiar-xavier-56b9a53a0",
+                "linkedinUrl": "https://www.linkedin.com/in/wilherson-aguiar-xavier-56b9a53a0"
+              },
+              {
+                "id": "ACoAAGIeFCEBLv3WyqSTv3VlOSoxD9b2uwV63Oc",
+                "firstName": "Marija",
+                "lastName": "Krsmanovic",
+                "position": "Quality Control Specialist at Stellantis",
+                "publicIdentifier": "marija-krsmanovic-48135639b",
+                "linkedinUrl": "https://www.linkedin.com/in/marija-krsmanovic-48135639b"
+              },
+              {
+                "id": "ACoAAGE-t10BWCgpE1W8aJPYgo1yzmxP2ylE0RM",
+                "firstName": "Bogdan",
+                "lastName": "Milanovic",
+                "position": "Quality Assurance Specialist at Stellantis",
+                "publicIdentifier": "bogdan-milanovic-1b9477396",
+                "linkedinUrl": "https://www.linkedin.com/in/bogdan-milanovic-1b9477396"
+              },
+              {
+                "id": "ACoAAGC_EOQBlj3xUfCyP1ui4BOCpBwCDRVYygM",
+                "firstName": "Ali",
+                "lastName": "RaGui",
+                "position": "Operator at Stellantis",
+                "publicIdentifier": "ali-ragui-ab0701393",
+                "linkedinUrl": "https://www.linkedin.com/in/ali-ragui-ab0701393"
+              }
+            ],
+            "originalQuery": {
+              "url": "https://www.linkedin.com/in/raiane-sirlene-silva/"
+            }
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      },
+      {
+        "json": {
+          "deliveryData": {
+            "Carimbo de data/hora": "22/05/2025 21:44:06",
+            "Endereço de e-mail": "glessiane15@gmal.com",
+            "Nome Completo:": "Glessiane Vasconcelos de Medeiros ",
+            "E-mail:": "glessiane15@gmail.com",
+            "Whatsapp:": 83987988946,
+            "Cidade e Estado:  ": "João Pessoa - PB",
+            "Currículo:": "https://drive.google.com/file/d/1w5FFDwLdFW94oep-ET6CWC7MrhuWmfz3/view?usp=sharing",
+            "Link LinkedIn:": "https://www.linkedin.com/in/glessiane-medeiros-6716391b7",
+            "Você está cursando ou já concluiu algum curso na área de tecnologia?": "Sim, estou cursando",
+            "Se sim, qual o curso e a instituição?": "Análise e desenvolvimento de sistemas ",
+            "Você já teve alguma experiência profissional como desenvolvedor?": "Não, mas já fiz projetos pessoais",
+            "Se sim, descreva brevemente a experiência mais relevante (empresa, período e tecnologias utilizadas):": "",
+            "Marque as tecnologias com as quais você tem experiência:": "HTML, CSS e JavaScript",
+            "Se você pudesse escolher uma tecnologia para aprofundar seus conhecimentos agora, qual seria e por quê?": "Banco de Dados SQL ",
+            "Você possui algum repositório no GitHub ou portfólio online? Se sim, compartilhe o link.": "https://github.com/GlessianeMedeiros/Projeto-site-dorama",
+            "Cite um projeto que você desenvolveu ou contribuiu e explique os desafios enfrentados e as soluções que encontrou.": "Criei uma página de Dorama q aprensenta o que é e indica 10 melhoras .",
+            "Por que você quer atuar como desenvolvedor(a) Full Stack?": "Me encontrei nessa área ",
+            "Quais são seus principais desafios ao buscar sua primeira oportunidade ou transição de carreira para tecnologia?": "Oportunidade ",
+            "Pretensão salarial:": 1500,
+            "Convite: Entrevista C": "",
+            "Convite: Entrevista Téc": "",
+            "Corrigido?": "",
+            "ID": "glessiane15@gmail.com-22052025-214406"
+          },
+          "resumeCorrection": {
+            "sections": {
+              "header": {
+                "status": [
+                  "⚠️ Nome e sobrenome assim como está/estará no Linkedin",
+                  "⚠️ Número de celular",
+                  "⚠️ Email",
+                  "⚠️ Cidade e estado em que resido atualmente",
+                  "⚠️ Link do Linkedin",
+                  "⚠️ Link do Github"
+                ],
+                "feedback": "O cabeçalho deve conter nome completo conforme aparece no LinkedIn, telefone com DDD, e‑mail profissional, cidade e estado, além dos links do LinkedIn e GitHub. Remova informações pessoais desnecessárias."
+              },
+              "objective": {
+                "status": [
+                  "⚠️ Campo inexistente"
+                ],
+                "feedback": "Inclua um objetivo claro e conciso, indicando a posição desejada e a área de atuação."
+              },
+              "summary": {
+                "status": [
+                  "⚠️ Não contém conquistas, interesses e metas profissionais"
+                ],
+                "feedback": "O resumo deve apresentar brevemente experiência, principais conquistas, tecnologias dominadas e metas de carreira."
+              },
+              "education": {
+                "status": [
+                  "⚠️ Formação no Programadores do Amanhã",
+                  "⚠️ Ordem cronológica"
+                ],
+                "feedback": "Destaque a formação no Programa 'Programadores do Amanhã' e organize as instituições da mais recente para a mais antiga."
+              },
+              "projects": {
+                "status": [
+                  "⚠️ Descrição, resultados e link de acesso",
+                  "⚠️ Tecnologias utilizadas em cada um deles destacadas"
+                ],
+                "feedback": "Para cada projeto inclua nome, breve descrição com resultados obtidos, tecnologias usadas e link para repositório ou demo."
+              },
+              "professional_experience": {
+                "status": [
+                  "⚠️ Cargo, nome da empresa e duração",
+                  "⚠️ Descrição das atividades realizadas, com destaque de resultados e conquistas"
+                ],
+                "feedback": "Liste cargo, empresa e período, e descreva as atividades usando verbos de ação e métricas de desempenho."
+              },
+              "technical_skills": {
+                "status": [
+                  "⚠️ Linguagens e frameworks"
+                ],
+                "feedback": "Separe as habilidades em linguagens, frameworks e ferramentas, indicando nível de proficiência."
+              },
+              "courses": {
+                "status": [
+                  "⚠️ Título do Curso"
+                ],
+                "feedback": "Apresente apenas cursos relevantes, com título completo e carga horária quando disponível."
+              },
+              "final_review": {
+                "status": [
+                  "⚠️ Revisar o português",
+                  "⚠️ Diminuir número de páginas"
+                ],
+                "feedback": "Corrija erros gramaticais e reduza o currículo a no máximo duas páginas, mantendo informações essenciais."
+              }
+            },
+            "general_comments": "O currículo necessita de reestruturação para melhorar clareza e foco: inclua objetivo, destaque projetos com resultados, organize a educação cronologicamente e padronize o formato das seções."
+          },
+          "linkedinProfileData": {
+            "id": "ACoAADJ2K3UBr107d5QQuxy9ioNDDqPNcpHq3z0",
+            "publicIdentifier": "glessiane-medeiros-6716391b7",
+            "linkedinUrl": "https://www.linkedin.com/in/glessiane-medeiros-6716391b7",
+            "firstName": "Glessiane",
+            "lastName": "Medeiros",
+            "headline": "Full Stack Developer Student | HTML | CSS | JavaScript | Java",
+            "openToWork": false,
+            "hiring": false,
+            "premium": false,
+            "influencer": false,
+            "memorialized": false,
+            "location": {
+              "linkedinText": "João Pessoa, Paraíba, Brazil",
+              "countryCode": "BR",
+              "parsed": {
+                "text": "João Pessoa, Brazil",
+                "countryCode": "BR",
+                "regionCode": null,
+                "country": "Brazil",
+                "countryFull": "Brazil",
+                "state": "Paraíba",
+                "city": "João Pessoa"
+              }
+            },
+            "objectUrn": "846605173",
+            "registeredAt": "2020-09-21T13:58:35.389Z",
+            "topSkills": null,
+            "connectionsCount": 348,
+            "followerCount": 357,
+            "verified": false,
+            "about": "Estudante de Programação, desejo me desenvolver em Full-Stack.\nLinguagens que já conheço: HTML, CSS, Java, Javascript e python. \nVeja alguns projetos que eu já fiz: https://github.com/GlessianeMedeiros",
+            "currentPosition": [],
+            "profileTopEducation": [
+              {
+                "schoolId": "3440006",
+                "companyId": "41649625",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/41649625/",
+                "schoolName": "Programadores do Amanhã"
+              }
+            ],
+            "profileActions": [],
+            "profilePicture": {
+              "url": "https://media.licdn.com/dms/image/v2/D4D03AQFgm-KR9IWeNg/profile-displayphoto-shrink_800_800/B4DZSpAG27GcAs-/0/1738002166520?e=1771459200&v=beta&t=Ci9uEVe2RPn0buE8TlzxHwGoN2OXFo8bTcb1NeflLbk",
+              "sizes": [
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQFgm-KR9IWeNg/profile-displayphoto-shrink_800_800/B4DZSpAG27GcAs-/0/1738002166520?e=1771459200&v=beta&t=Ci9uEVe2RPn0buE8TlzxHwGoN2OXFo8bTcb1NeflLbk",
+                  "width": 800,
+                  "height": 800,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQFgm-KR9IWeNg/profile-displayphoto-shrink_400_400/B4DZSpAG27GcAw-/0/1738002166516?e=1771459200&v=beta&t=C6IrZP4wQwzwurLJB2IwjBm76YNV6VBAdCk08u7MHoI",
+                  "width": 400,
+                  "height": 400,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQFgm-KR9IWeNg/profile-displayphoto-shrink_200_200/B4DZSpAG27GcAo-/0/1738002166516?e=1771459200&v=beta&t=qYoLqmOSheWCW62s7nri1b6sUz0Bn6-eGxIASUbTaUs",
+                  "width": 200,
+                  "height": 200,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D03AQFgm-KR9IWeNg/profile-displayphoto-shrink_100_100/B4DZSpAG27GcAk-/0/1738002166516?e=1771459200&v=beta&t=e-NpgQA5ZXMK36yd82dKsHs1SHOmybCqxNzcotPvuDs",
+                  "width": 100,
+                  "height": 100,
+                  "expiresAt": 1771459200000
+                }
+              ]
+            },
+            "coverPicture": {
+              "url": "https://media.licdn.com/dms/image/v2/D4D16AQGNx2SmvoZ_Ng/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1669301409866?e=1771459200&v=beta&t=nNvCHKiLlN4eWxw2TH4z_sFm7DkN9izn4AFggCq-iVQ",
+              "sizes": [
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D16AQGNx2SmvoZ_Ng/profile-displaybackgroundimage-shrink_350_1400/profile-displaybackgroundimage-shrink_350_1400/0/1669301409866?e=1771459200&v=beta&t=nNvCHKiLlN4eWxw2TH4z_sFm7DkN9izn4AFggCq-iVQ",
+                  "width": 1400,
+                  "height": 350,
+                  "expiresAt": 1771459200000
+                },
+                {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D16AQGNx2SmvoZ_Ng/profile-displaybackgroundimage-shrink_200_800/profile-displaybackgroundimage-shrink_200_800/0/1669301409866?e=1771459200&v=beta&t=u_zCZqSQfxQVX58_Q7dV-xYMXpuYRwPRp3nn-DfVXSY",
+                  "width": 800,
+                  "height": 200,
+                  "expiresAt": 1771459200000
+                }
+              ]
+            },
+            "photo": "https://media.licdn.com/dms/image/v2/D4D03AQFgm-KR9IWeNg/profile-displayphoto-shrink_800_800/B4DZSpAG27GcAs-/0/1738002166520?e=1771459200&v=beta&t=Ci9uEVe2RPn0buE8TlzxHwGoN2OXFo8bTcb1NeflLbk",
+            "services": null,
+            "experience": [],
+            "education": [
+              {
+                "schoolName": "Programadores do Amanhã",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/41649625/",
+                "schoolId": "41649625",
+                "degree": "Curso ",
+                "fieldOfStudy": "Programação",
+                "skills": [
+                  "JavaScript",
+                  "HTML",
+                  "Figma (Software)",
+                  "CSS"
+                ],
+                "description": "Formação em Programação Full-Stack com duração de 10 meses.\nAprendendo HTML, CSS, JavaScript e ainda Soft Skills tais como: Metodologia Smart, Treinamento para Entrevista, Solução de conflitos e Autoconhecimento.",
+                "startDate": {
+                  "month": "Aug",
+                  "year": 2022,
+                  "text": "Aug 2022"
+                },
+                "endDate": {
+                  "month": "Jun",
+                  "year": 2023,
+                  "text": "Jun 2023"
+                },
+                "period": "Aug 2022 - Jun 2023",
+                "schoolLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_400_400-alternative/company-logo_400_400-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=b_tggBNZfUAYH0bTEwDZ7ofQlR65ue9K4GZTVJZkOXk",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_400_400-alternative/company-logo_400_400-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=b_tggBNZfUAYH0bTEwDZ7ofQlR65ue9K4GZTVJZkOXk",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_400_400/company-logo_400_400/0/1630642648973/programadoresdoamanha_logo?e=1771459200&v=beta&t=kVEJgwBnxU2h2UOhx7hJB51RCXVJxFkHjItBTz0U0CY",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_200_200/company-logo_200_200/0/1630642648972/programadoresdoamanha_logo?e=1771459200&v=beta&t=bkvfhSzTRzcqMPAUCosIujoIamRrJvTImlyi-SdnM5o",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_200_200-alternative/company-logo_200_200-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=_6yeYQ6PFcnKLTrRE_GzRojjQC6PBd8alHZRm3h04OA",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_100_100-alternative/company-logo_100_100-alternative/0/1630642649041/programadoresdoamanha_logo?e=1771459200&v=beta&t=gDSyrOjK7izMJ7ZTqlEWdBjjOuweM7Bbe-pun-_lOJE",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/C4E0BAQHuF15WJ1nCEw/company-logo_100_100/company-logo_100_100/0/1630642648972/programadoresdoamanha_logo?e=1771459200&v=beta&t=9uUcuy9WTI-1X6PFp6xIVn6URvuPIItn11n_1DYyyzM",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "schoolName": "Alura",
+                "schoolLinkedinUrl": "https://www.linkedin.com/company/3824181/",
+                "schoolId": "3824181",
+                "degree": "Curso",
+                "fieldOfStudy": "Programação",
+                "skills": [
+                  "C#",
+                  "JavaScript",
+                  "MySQL",
+                  "Java"
+                ],
+                "description": "Programa da Oracle para formação de profissionais em tecnologia.\nTrilha 1: Iniciante em programação (Javascript e Html)\nTrilha 2: Formação Back-end",
+                "startDate": {
+                  "month": "Dec",
+                  "year": 2022,
+                  "text": "Dec 2022"
+                },
+                "endDate": {
+                  "month": "May",
+                  "year": 2023,
+                  "text": "May 2023"
+                },
+                "period": "Dec 2022 - May 2023",
+                "schoolLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEN_LdkNNYsIg/company-logo_400_400/B4DZrX2SOqGgAY-/0/1764557923720/aluracursos_logo?e=1771459200&v=beta&t=ERvy7XfHZx3FdSVf6cHmyQ5rVwsVdeS80qA7fPPnoE4",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEN_LdkNNYsIg/company-logo_400_400/B4DZrX2SOqGgAY-/0/1764557923720/aluracursos_logo?e=1771459200&v=beta&t=ERvy7XfHZx3FdSVf6cHmyQ5rVwsVdeS80qA7fPPnoE4",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEN_LdkNNYsIg/company-logo_200_200/B4DZrX2SOqGgAI-/0/1764557923720/aluracursos_logo?e=1771459200&v=beta&t=ZkNXjr0RGFT1iXop90d8lLd_3srtcMM8QYEIYelm8kA",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQEN_LdkNNYsIg/company-logo_100_100/B4DZrX2SOqGgAQ-/0/1764557923720/aluracursos_logo?e=1771459200&v=beta&t=akCWaRk8uFJ_A0PSP3x96hSJbruHWGKSDkliXFvJw5g",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              }
+            ],
+            "certifications": [
+              {
+                "title": "Fundamentos da Cultura DevOps",
+                "issuedAt": "Issued Apr 2025",
+                "link": "https://app.rocketseat.com.br/certificates/4ff9521c-2156-45e8-bb02-c58a25aa0eb9",
+                "issuedBy": "Rocketseat",
+                "issuedByLink": "https://www.linkedin.com/company/11290873/",
+                "issuedByLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_200_200/B4DZsKOg4AJcAI-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=9tzdOGsxejLKQDmGZN4H4DHy-_INaRCERuoWiaT9wTM",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_100_100/B4DZsKOg4AJcAQ-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=HwyIkquME6-yDuyw2NYbTyi3cS1hpcRWOppldvbcnwI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "Fundamentos da Cultura DevOps",
+                "issuedAt": "Issued Apr 2025",
+                "link": "https://app.rocketseat.com.br/certificates/4ff9521c-2156-45e8-bb02-c58a25aa0eb9",
+                "issuedBy": "Rocketseat",
+                "issuedByLink": "https://www.linkedin.com/company/11290873/",
+                "issuedByLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_200_200/B4DZsKOg4AJcAI-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=9tzdOGsxejLKQDmGZN4H4DHy-_INaRCERuoWiaT9wTM",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_100_100/B4DZsKOg4AJcAQ-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=HwyIkquME6-yDuyw2NYbTyi3cS1hpcRWOppldvbcnwI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "Fundamentos da Cultura DevOps",
+                "issuedAt": "Issued Apr 2025",
+                "link": "https://app.rocketseat.com.br/certificates/4ff9521c-2156-45e8-bb02-c58a25aa0eb9",
+                "issuedBy": "Rocketseat",
+                "issuedByLink": "https://www.linkedin.com/company/11290873/",
+                "issuedByLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_200_200/B4DZsKOg4AJcAI-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=9tzdOGsxejLKQDmGZN4H4DHy-_INaRCERuoWiaT9wTM",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_100_100/B4DZsKOg4AJcAQ-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=HwyIkquME6-yDuyw2NYbTyi3cS1hpcRWOppldvbcnwI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "Fundamentos da Cultura DevOps",
+                "issuedAt": "Issued Apr 2025",
+                "link": "https://app.rocketseat.com.br/certificates/4ff9521c-2156-45e8-bb02-c58a25aa0eb9",
+                "issuedBy": "Rocketseat",
+                "issuedByLink": "https://www.linkedin.com/company/11290873/",
+                "issuedByLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_200_200/B4DZsKOg4AJcAI-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=9tzdOGsxejLKQDmGZN4H4DHy-_INaRCERuoWiaT9wTM",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_100_100/B4DZsKOg4AJcAQ-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=HwyIkquME6-yDuyw2NYbTyi3cS1hpcRWOppldvbcnwI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "Fundamentos da Cultura DevOps",
+                "issuedAt": "Issued Apr 2025 · Expired Apr 2025",
+                "link": "https://app.rocketseat.com.br/certificates/4ff9521c-2156-45e8-bb02-c58a25aa0eb9",
+                "issuedBy": "Rocketseat",
+                "issuedByLink": "https://www.linkedin.com/company/11290873/",
+                "issuedByLogo": {
+                  "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                  "sizes": [
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_400_400/B4DZsKOg4AJcAY-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=xBXIjiji22uT6pIKDTKc_53UhdjaY4chVe04eOL12-4",
+                      "width": 400,
+                      "height": 400,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_200_200/B4DZsKOg4AJcAI-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=9tzdOGsxejLKQDmGZN4H4DHy-_INaRCERuoWiaT9wTM",
+                      "width": 200,
+                      "height": 200,
+                      "expiresAt": 1771459200000
+                    },
+                    {
+                      "url": "https://media.licdn.com/dms/image/v2/D4D0BAQGIz1Szv73G7A/company-logo_100_100/B4DZsKOg4AJcAQ-/0/1765403137873/rocketseat_logo?e=1771459200&v=beta&t=HwyIkquME6-yDuyw2NYbTyi3cS1hpcRWOppldvbcnwI",
+                      "width": 100,
+                      "height": 100,
+                      "expiresAt": 1771459200000
+                    }
+                  ]
+                }
+              }
+            ],
+            "projects": [],
+            "volunteering": [],
+            "receivedRecommendations": [],
+            "skills": [
+              {
+                "name": "C#",
+                "positions": [
+                  "Alura"
+                ]
+              },
+              {
+                "name": "Figma (Software)",
+                "positions": [
+                  "Programadores do Amanhã"
+                ]
+              },
+              {
+                "name": "MySQL",
+                "positions": [
+                  "Alura"
+                ],
+                "endorsements": "1 endorsement"
+              },
+              {
+                "name": "Java",
+                "positions": [
+                  "Alura"
+                ],
+                "endorsements": "1 endorsement"
+              },
+              {
+                "name": "JavaScript",
+                "positions": [
+                  "2 educational experiences at Programadores do Amanhã and 1 other school"
+                ],
+                "endorsements": "4 endorsements"
+              },
+              {
+                "name": "HTML",
+                "positions": [
+                  "Programadores do Amanhã"
+                ],
+                "endorsements": "4 endorsements"
+              },
+              {
+                "name": "CSS",
+                "positions": [
+                  "Programadores do Amanhã"
+                ],
+                "endorsements": "4 endorsements"
+              },
+              {
+                "name": "Comunicação",
+                "endorsements": "2 endorsements"
+              },
+              {
+                "name": "Capacidade analítica",
+                "endorsements": "2 endorsements"
+              },
+              {
+                "name": "Gestão",
+                "endorsements": "1 endorsement"
+              }
+            ],
+            "publications": [],
+            "courses": [],
+            "patents": [],
+            "honorsAndAwards": [],
+            "languages": [],
+            "causes": [],
+            "featured": null,
+            "composeOptionType": "UPSELL",
+            "moreProfiles": [
+              {
+                "id": "ACoAADyOcG8BAZCvakLQp90qJJqXtzAp1kJxvJg",
+                "firstName": "Danielle",
+                "lastName": "Gomes",
+                "publicIdentifier": "elle-gs",
+                "linkedinUrl": "https://www.linkedin.com/in/elle-gs"
+              },
+              {
+                "id": "ACoAADbH4GIBub-eReTocw5gimNX1P1zq1oBGDM",
+                "firstName": "Maria ",
+                "lastName": "Francielly ",
+                "publicIdentifier": "mariafrancielly",
+                "linkedinUrl": "https://www.linkedin.com/in/mariafrancielly"
+              },
+              {
+                "id": "ACoAABXtRhsBUKGvyvRCI9gPH1brFFYP13qHeiQ",
+                "firstName": "Mônica",
+                "lastName": "C.",
+                "publicIdentifier": "monicacrodrigues",
+                "linkedinUrl": "https://www.linkedin.com/in/monicacrodrigues"
+              },
+              {
+                "id": "ACoAAALIov4BcwEDt3X3or_bSoqey0Qp5D-z5JY",
+                "firstName": "Alessandra",
+                "lastName": "Carreiro",
+                "publicIdentifier": "alessandra-carreiro-4a678313",
+                "linkedinUrl": "https://www.linkedin.com/in/alessandra-carreiro-4a678313"
+              },
+              {
+                "id": "ACoAAAKN_9MBGX_FQASoCxhMiA5WrUdFlunsTFw",
+                "firstName": "Willians",
+                "lastName": "Fiori 📈",
+                "publicIdentifier": "will2703",
+                "linkedinUrl": "https://www.linkedin.com/in/will2703"
+              },
+              {
+                "id": "ACoAACH6oH8BT5Ti1jKHongLJUsHDwuqs3q5X4k",
+                "firstName": "Mírian",
+                "lastName": "Ribeiro",
+                "publicIdentifier": "mírianribeiro",
+                "linkedinUrl": "https://www.linkedin.com/in/mírianribeiro"
+              },
+              {
+                "id": "ACoAAD1VOz8BjSP9zx8kLJb8Zd0T1ih_Qk0yAP8",
+                "firstName": "Simeone ",
+                "lastName": "Johnson",
+                "publicIdentifier": "simeone-johnson",
+                "linkedinUrl": "https://www.linkedin.com/in/simeone-johnson"
+              },
+              {
+                "id": "ACoAADQBjoMBWJDgJbvJvv-ZgxsOMzjmJ5eDPEY",
+                "firstName": "Victoria",
+                "lastName": "Barbosa",
+                "publicIdentifier": "victoriabarbosaa",
+                "linkedinUrl": "https://www.linkedin.com/in/victoriabarbosaa"
+              },
+              {
+                "id": "ACoAAEDFBbcBYVaOGhGeMqf9nGMpmL9PjZNNW7U",
+                "firstName": "Ingrid",
+                "lastName": "Oliveira",
+                "publicIdentifier": "ingrid-oliveiradev",
+                "linkedinUrl": "https://www.linkedin.com/in/ingrid-oliveiradev"
+              },
+              {
+                "id": "ACoAAC7ZWmcBTxdcSUj-07lszFcKlaGvEp4r9cA",
+                "firstName": "Elcilena",
+                "lastName": "Monteiro",
+                "publicIdentifier": "elcilena-monteiro-03328b19b",
+                "linkedinUrl": "https://www.linkedin.com/in/elcilena-monteiro-03328b19b"
+              },
+              {
+                "id": "ACoAAA7EnFQBxkzCFl7-YxG_eAXyCPWDGb5Y1AA",
+                "firstName": "Cleber",
+                "lastName": "Guedes",
+                "publicIdentifier": "cleberguedes",
+                "linkedinUrl": "https://www.linkedin.com/in/cleberguedes"
+              },
+              {
+                "id": "ACoAADXWffQBNtnNfDRky7wZZuzQ2ZnqVzPWTFk",
+                "firstName": "Jéssica",
+                "lastName": "Silva",
+                "publicIdentifier": "jessica-batista-web-designer",
+                "linkedinUrl": "https://www.linkedin.com/in/jessica-batista-web-designer"
+              },
+              {
+                "id": "ACoAAC_G53ABpU9SleCdpz_gF5eNDHcSIQp3Slk",
+                "firstName": "Natália",
+                "lastName": "Pereira Silva",
+                "publicIdentifier": "natália-pereira-silva-4405381a4",
+                "linkedinUrl": "https://www.linkedin.com/in/natália-pereira-silva-4405381a4"
+              },
+              {
+                "id": "ACoAABymhG8Bnkjx75YDWO20qN3S_3oYE1Qu1I0",
+                "firstName": "Achmad Ryan",
+                "lastName": "Noor",
+                "position": "Head Operation PT ASA Vistory Entertainment",
+                "publicIdentifier": "achmad-ryan-noor-43bb88114",
+                "linkedinUrl": "https://www.linkedin.com/in/achmad-ryan-noor-43bb88114"
+              },
+              {
+                "id": "ACoAAAy2qAEBRd2Q-QCT9qfUSKFTlza1W1iTYrc",
+                "firstName": "Ananda ",
+                "lastName": "Citra",
+                "position": "Founder Beyond Films, Executive Produser, Director @ Beyond Films - Addicted to produce astounding visual for your eyes\n",
+                "publicIdentifier": "anandacitra",
+                "linkedinUrl": "https://www.linkedin.com/in/anandacitra"
+              },
+              {
+                "id": "ACoAAEmnSA4BWHnQ2ttixDkcb4wF8U6ssj1xfqs",
+                "firstName": "Polanco",
+                "lastName": "Surya Achri",
+                "position": "Pengarang | LPDP Awardee | Magister Sastra UGM",
+                "publicIdentifier": "polanco-surya-achri-012a002a5",
+                "linkedinUrl": "https://www.linkedin.com/in/polanco-surya-achri-012a002a5"
+              },
+              {
+                "id": "ACoAAF41LGEBhLcjZOPG66L8RxYJqcgWTMFl6eQ",
+                "firstName": "STC",
+                "lastName": "Management",
+                "position": "Intl Distribution & Acquisition, Film Releasing, Film/TV/Ad co-Production & Services, Festival",
+                "publicIdentifier": "stc-management-1693a2381",
+                "linkedinUrl": "https://www.linkedin.com/in/stc-management-1693a2381"
+              },
+              {
+                "id": "ACoAAAZeDjUBT499IxFcIgWfaxgJouSGe3PSJ9Y",
+                "firstName": "Viyanthi",
+                "lastName": "Kosasih",
+                "position": "ASA Vistory Entertainment",
+                "publicIdentifier": "visiko",
+                "linkedinUrl": "https://www.linkedin.com/in/visiko"
+              },
+              {
+                "id": "ACoAAAsQABoB41XWJTzIAkYYGpTkO6lb9ULkPD0",
+                "firstName": "Achmad",
+                "lastName": "Rouzni Noor II",
+                "position": "Film Producer, Media Personality",
+                "publicIdentifier": "rourry",
+                "linkedinUrl": "https://www.linkedin.com/in/rourry"
+              },
+              {
+                "id": "ACoAADa1ibkBMpgWdyTWKzJCj3Cf4k7Z7qaG7nM",
+                "firstName": "Rosianti",
+                "lastName": "Zarin Artantyo",
+                "position": "Lulusan Ilmu Komunikasi | Spesialis Konten Kreatif | Editor Video Profesional | Praktisi Humas | Manajemen Produksi",
+                "publicIdentifier": "rosianti-zarin-artantyo-bb5484217",
+                "linkedinUrl": "https://www.linkedin.com/in/rosianti-zarin-artantyo-bb5484217"
+              },
+              {
+                "id": "ACoAAATNhXgBl4rMcIKboIl9y4Ocd7Hca52VwIQ",
+                "firstName": "Didit Putra",
+                "lastName": "Erlangga",
+                "position": "Shaping Narratives, Building Brand Story, Fostering the Reputation, and Connecting with the Audience",
+                "publicIdentifier": "eldidito",
+                "linkedinUrl": "https://www.linkedin.com/in/eldidito"
+              },
+              {
+                "id": "ACoAAATz9c4BPs4Nx_QKiMsWaojHg49Js9ovKk8",
+                "firstName": "Dianita",
+                "lastName": "Tiastuti",
+                "position": "Artist Managers\n\nAn artist manager is a professional who handles the business aspects of an artist’s career, allowing the artist to focus on their creative work. ",
+                "publicIdentifier": "dianita-tiastuti-6929b423",
+                "linkedinUrl": "https://www.linkedin.com/in/dianita-tiastuti-6929b423"
+              },
+              {
+                "id": "ACoAAAT-nooBDSaYxZG-GHPXukJKTWAhPUQVSHg",
+                "firstName": "Hizkia ",
+                "lastName": "S.",
+                "position": "Art Director & Graphic Designer",
+                "publicIdentifier": "hizaro",
+                "linkedinUrl": "https://www.linkedin.com/in/hizaro"
+              }
+            ],
+            "originalQuery": {
+              "url": "https://www.linkedin.com/in/glessiane-medeiros-6716391b7"
+            }
+          }
+        },
+        "pairedItem": {
+          "item": 1
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Append row in correction sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to errror",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call [PS] Resume Correction": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "Grouping LinkedIn in 10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Grouping LinkedIn in 10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Call [PS] Resume Correction",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row status to error": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Call [PS] Linkedin Fetch Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row status to error1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Profiles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row status to error2": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Profiles": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grouping LinkedIn in 10": {
+      "main": [
+        [
+          {
+            "node": "Filter2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Profiles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in correction sheet": {
+      "main": [
+        [
+          {
+            "node": "Update row status to finished",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to errror",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row status to finished": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to errror",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call [PS] Linkedin Fetch Profile": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call [PS] Linkedin Correction": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row status to error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "Call [PS] Linkedin Correction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row status to errror": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "cbe7a168-6f66-4261-962b-15df3e9f0125",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "954b9fc910b1abc00f621bddeb239668587b55a36512b636f1604f5493a993aa"
+  },
+  "id": "m6ENV3O3on3PA5BSZe3-D",
+  "tags": []
+}

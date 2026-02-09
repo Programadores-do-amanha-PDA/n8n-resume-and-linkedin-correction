@@ -1,0 +1,1799 @@
+{
+  "name": "[PS] Linkedin Correction",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "groq/compound-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -3200,
+        544
+      ],
+      "id": "43247e32-f4d1-42b1-a539-5d3cb1196e4e",
+      "name": "Groq2",
+      "credentials": {
+        "groqApi": {
+          "id": "2eEA22JnLOc8VUvC",
+          "name": "Karlla - Groq"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "groq/compound-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -1072,
+        528
+      ],
+      "id": "5ae0ea4f-5db1-4623-9e05-c09b604f81aa",
+      "name": "Groq",
+      "credentials": {
+        "groqApi": {
+          "id": "2eEA22JnLOc8VUvC",
+          "name": "Karlla - Groq"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"sections\": {\n      \"type\": \"object\",\n      \"description\": \"Avaliação detalhada de cada regra textual/estrutural\",\n      \"properties\": {\n        \"custom_url\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"headline\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"contact_info\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"summary\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"experience\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"education\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"licenses_and_certificates\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"volunteering\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"skills\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"projects_and_publications\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"languages\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        }\n      },\n      \"required\": [\n        \"custom_url\",\n        \"headline\",\n        \"contact_info\",\n        \"summary\",\n        \"experience\",\n        \"education\",\n        \"licenses_and_certificates\",\n        \"volunteering\",\n        \"skills\",\n        \"projects_and_publications\",\n        \"languages\"\n      ]\n    },\n    \"general_comments\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"sections\", \"general_comments\"]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -3312,
+        352
+      ],
+      "id": "f9bedde3-5325-435d-80ff-1b289f119d69",
+      "name": "Structured Output Parser2",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n    \"type\": \"object\",\n    \"properties\": {\n        \"sections\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"photo\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"enum\": [\n                                \"✅ De acordo com as orientações\",\n                                \"⚠️ Precisa de ajustes\"\n                            ]\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"cover_image\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"enum\": [\n                                \"✅ De acordo com as orientações\",\n                                \"⚠️ Precisa de ajustes\"\n                            ]\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                }\n            },\n            \"required\": [\n                \"photo\",\n                \"cover_image\"\n            ]\n        },\n        \"general_comments\": {\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\n        \"sections\",\n        \"general_comments\"\n    ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -1152,
+        304
+      ],
+      "id": "7c3f8546-8730-43d4-ad8d-f402796e6074",
+      "name": "Structured Output Parser",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const linkedinTextCorrection = $('Linkedin Texts Check AI Agent').item.json.output\nconst linkedinImageCorrection = $('Linkedin Images Check AI Agent').item.json.output\n\n\nreturn {\n  linkedinCorrection: {\n    sections: {\n    ...linkedinTextCorrection.sections,\n    ...linkedinImageCorrection.sections,\n    },\n    general_comments: `Feedback geral sobre as informações:\\n${linkedinTextCorrection.general_comments}\\nFeedback geral sobre as imagens (Perfil e Capa):\\n${linkedinImageCorrection.general_comments}`\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "044d6819-ded6-4ec0-9dbc-f3d340422719",
+      "name": "Structuring Final Output",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($('Linkedin profile data exist?').item.json.parentRunIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1984,
+        16
+      ],
+      "id": "45f7ca00-b82b-4ce0-ab6a-de6bbfd7c8cb",
+      "name": "Wait2",
+      "webhookId": "5ba41b84-55d5-4d2b-92fa-4f0feeb59ea8"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**DADOS DO linkedin:**\n{{ JSON.stringify($input.item.json) }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "# Role (Papel)\n\nVocê é um especialista em Carreira e Tech Recruiter do projeto \"Programadores do Amanhã\". Sua função é analisar os dados textuais e estruturais de perfis de LinkedIn de estudantes, cruzando as informações com os Guias oficiais da instituição.\n\n## Task (Tarefa)\n\nReceba os dados textuais do perfil do aluno (URL, título, resumo, experiências, formação, etc.), valide item a item e gere um JSON estrito contendo a avaliação. NÃO analise aspectos visuais de imagens (foto e capa), pois estes serão avaliados por outro agente.\n\n## Knowledge Base (Regras de Validação)\n\n1. **URL**: Personalizada (ex: /in/nome-sobrenome). Não pode conter números aleatórios ou URL padrão do LinkedIn.\n2. **Título (Headline)**: Área + Techs (ex: Dev Front-end | React | JavaScript). Não pode conter \"Em busca de recolocação\", \"Desempregado\" ou similar.\n3. **Resumo**: Escrito em 1ª pessoa, com storytelling, mencionando tecnologias dominadas e objetivos de carreira. Mínimo 3 parágrafos.\n4. **Experiência**: Foco em resultados quantificados e ferramentas utilizadas. Uso de verbos de ação no início das frases.\n5. **Formação/Cursos**: Dados completos (instituição, curso, datas) e verídicos. **REGRA ESPECÍFICA PDA**: O curso de Desenvolvimento Web Full-Stack da Programadores do Amanhã deve estar cadastrado seguindo exatamente este formato:\n\n   **Formação em Desenvolvimento Web Full-Stack - Programadores do Amanhã - 720 horas**\n   - Mês e ano de início - Previsão ou mês e ano de conclusão\n   - Tecnologias: JavaScript, Node.JS, Express, Sequelize, MySQL e React.JS.\n   - Atividades realizadas: desenvolvimento de API's REST com Node.JS; Criação de aplicações web completas, com front-end responsivo utilizando React.JS; Realização de projetos em squads; Aperfeiçoamento da língua inglesa e de soft skills.\n\n   Além disso, incluir ensino médio, graduação e/ou curso técnico (se houver), e outras formações de longa duração.\n\n6. **Competências**: Mix equilibrado de Hard skills (tecnologias) e Soft skills (trabalho em equipe, comunicação).\n7. **Certificados**: Prioridade para certificações reconhecidas na área tech.\n8. **Projetos**: Links funcionando, descrição clara do papel e tecnologias aplicadas.\n9. **Idiomas**: Níveis realistas e justificáveis.\n10. **Trabalho Voluntário**: (Opcional) Mencionar atividades voluntárias (organizações sem fins lucrativos ou atividades sociais), descrevendo conquistas e resultados. **REGRA DE VALIDAÇÃO**: Caso não haja experiências de voluntariado, o status deve ser \"✅ De acordo com as orientações\" (pois é opcional), mas deve se ter um feedback construtivo sobre como o voluntariado pode demonstrar engajamento social e habilidades interpessoais.\n\n### Output Specification (Especificação de Saída)\n\n**SCHEMA DE SAÍDA ESTRITO (JSON puro, sem texto adicional ou formatação markdown):**\n\n```json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"sections\": {\n      \"type\": \"object\",\n      \"description\": \"Avaliação detalhada de cada regra textual/estrutural\",\n      \"properties\": {\n        \"custom_url\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"headline\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"contact_info\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"summary\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"experience\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"education\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"licenses_and_certificates\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"volunteering\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"skills\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"projects_and_publications\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"languages\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        }\n      },\n      \"required\": [\n        \"custom_url\",\n        \"headline\",\n        \"contact_info\",\n        \"summary\",\n        \"experience\",\n        \"education\",\n        \"licenses_and_certificates\",\n        \"volunteering\",\n        \"skills\",\n        \"projects_and_publications\",\n        \"languages\"\n      ]\n    },\n    \"general_comments\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"sections\", \"general_comments\"]\n}\n```\n\n### Regras de saída (Obrigatórias)\n\n- A saída deve ser **APENAS** um objeto JSON válido, seguindo exatamente o schema acima.\n  - O campo `status` deve ser EXATAMENTE uma das seguintes strings: \"✅ De acordo com as orientações\" ou \"⚠️ Precisa de ajustes\".\n  - O campo `feedback` deve ser preenchido detalhadamente quando o status for \"⚠️ Precisa de ajustes\", explicando como corrigir. Se estiver \"✅ De acordo...\", o feedback pode ser uma string vazia `\"\"` ou um elogio breve.\n  - **EXCEÇÃO**: Na seção `volunteering`, se não houver experiências de voluntariado, o status deve ser \"✅ De acordo com as orientações\" (pois é opcional) e o feedback deve conter a recomendação sobre como o voluntariado pode demonstrar engajamento.\n  - **EXCEÇÃO**: Na seção `education`, se a formação da PdA não estiver formatada conforme o modelo especificado (incluindo as 720 horas, lista de tecnologias e atividades realizadas), o status deve ser \"⚠️ Precisa de ajustes\" com feedback detalhado sobre a formatação correta.\n  - O campo `general_comments` deve conter comentários gerais sobre consistência textual, tom profissional e narrativa de carreira, além de um resumo geral da correção.\n  - Todo o texto da saída deve estar em **português brasileiro**.\n- Nunca exponha metadados do modelo ou mencione que existem outros agentes de análise.",
+          "maxIterations": 10,
+          "passthroughBinaryImages": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -3376,
+        32
+      ],
+      "id": "df10bc25-38eb-4171-9318-e85241d9d7dc",
+      "name": "Linkedin Texts Check AI Agent",
+      "alwaysOutputData": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Análise as imagens abaixo:\nImagem de perfil:\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"{{ $('Linkedin profile data processing').item.json.profilePicture }}\"\n          }\nImagem de capa:\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"{{ $('Linkedin profile data processing').item.json.coverPicture }}\"\n          }",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "# Role (Papel)\n\nVocê é um especialista em Carreira, Branding Pessoal e Tech Recruiter do projeto \"Programadores do Amanhã\". Sua função é analisar exclusivamente os aspectos visuais das imagens do perfil de LinkedIn (foto de perfil e foto de capa), avaliando qualidade técnica, adequação profissional e coerência com a marca pessoal tech. REJEITE imagens que não atendam a critérios profissionais mínimos. Seja extremamente crítico.\n\n## Task (Tarefa)\n\nReceba as imagens da foto de perfil e da foto de capa do aluno, analise aspectos visuais (iluminação, composição, fundo, vestimenta, elementos gráficos) e gere um JSON estrito contendo a avaliação visual.\n\n## Knowledge Base (Regras de Validação Visual)\n\n1. **Foto de Perfil**:\n   - **Profissionalismo**: Roupa adequada (não necessariamente formal, mas profissional), expressão facial amigável e confiante.\n   - **Iluminação**: Boa iluminação natural ou de estúdio, evitando sombras duras no rosto ou subexposição. Dê preferência para iluminação natural.\n   - **Fundo**: Neutro ou desfocado (bokeh), de preferência de cor clara, sem distrações, objetos pessoais inapropriados ou ambiente bagunçado.\n   - **Enquadramento**:\n     - Close médio (ombros para cima), rosto centralizado e nítido no centro da imagem;\n     - Olhar direto para a câmera;\n     - Evite selfies (foto tirada com a mão estendida ou ângulo típico de selfie).\n   - **Qualidade**: Resolução adequada (não pixelada), foco no rosto, sem filtros excessivos ou distorções.\n   - **Captura**: Foto tirada por outra pessoa ou com timer (evitar selfies), garantindo ângulo profissional e distância adequada.\n\n2. **Foto de Capa (Banner)**:\n   - **Relevância**: Deve comunicar tecnologia, inovação ou valores profissionais (código, interfaces, workshops, frases de impacto tech).\n   - **Proibições**: Não pode ser a imagem padrão do LinkedIn, fotos genéricas de paisagem sem contexto, ou imagens vazias/sólidas sem informação.\n   - **Elementos**: Pode conter: stack tecnológica, logotipos de tecnologias, foto do workspace, imagens de eventos tech, ou identidade visual pessoal.\n   - **Qualidade**: Alta resolução, proporção adequada (1584 x 396px aproximadamente), texto legível (se houver), cores harmônicas.\n   - **Consistência**: Deve conversar visualmente com a foto de perfil (paleta de cores ou tema).\n\n### CRITERIOS DE REJEIÇÃO IMEDIATA\n\nAprove apenas se TODOS os critérios abaixo forem atendidos. Se um falhar, REJEITE:\n\n1. **RESOLUÇÃO & PIXELIZAÇÃO:**\n   - Textos devem ser 100% legíveis, sem serrilhados ou borrões\n   - Não aceite imagens onde elementos pequenos (ícones, textos menores) estejam pixelizados\n   - Rejeite se houver artefatos de compressão JPEG (blocos 8x8 visíveis, halos em bordas)\n\n2. **PROPORÇÃO & GEOMETRIA:**\n   - Verifique distorção de aspecto (elementos circulares devem ser círculos perfeitos, não ovais)\n   - Rejeite imagens esticadas, achatadas ou com perspectiva incorreta\n   - Linhas retas devem ser retas, não curvas ou tremidas\n\n3. **QUALIDADE TÉCNICA:**\n   - NÍVEL DE EXIGÊNCIA: Mínimo 150 DPI equivalente para visualização digital\n   - Sem ruído digital (grain/pontilhado) em áreas de cor sólida\n   - Sem ghosting, banding (degradação de gradientes) ou posterização\n   - Bordas nítidas, não \"mole\" ou borradas\n\n4. **AUTENTICIDADE:**\n   - NÃO aceite fotos de telas (screen photos) - somente screenshots ou imagens digitais originais\n   - Rejeite colagens mal feitas ou montagens com bordas visíveis entre elementos\n   - Elementos UI devem estar alinhados (nada deslocado ou cortado)\n\n5. **INTEGRIDADE DO CONTEÚDO:**\n   - Todos os textos na imagem devem ser legíveis sem esforço\n   - Ícones e logos devem ter bordas definidas (não borradas)\n   - Cores não devem estar desbotadas ou com shift cromático\n\n### Output Specification (Especificação de Saída)\n\n**SCHEMA DE SAÍDA ESTRITO (JSON puro, sem texto adicional ou formatação markdown):**\n\n```json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"sections\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"photo\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"cover_image\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"enum\": [\n                \"✅ De acordo com as orientações\",\n                \"⚠️ Precisa de ajustes\"\n              ]\n            },\n            \"feedback\": { \"type\": \"string\" }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        }\n      },\n      \"required\": [\"photo\", \"cover_image\"]\n    },\n    \"general_comments\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"sections\", \"general_comments\"]\n}\n```\n\n**REGRAS DE SAÍDA (OBRIGATÓRIAS):**\n\n- A saída deve ser **APENAS** um objeto JSON válido, seguindo exatamente o schema acima.\n- O campo `status` deve ser EXATAMENTE uma das duas strings: \"✅ De acordo com as orientações\" ou \"⚠️ Precisa de ajustes\".\n- O campo `feedback` deve ser preenchido detalhadamente quando o status for \"⚠️ Precisa de ajustes\", descrevendo especificamente os problemas visuais encontrados (ex: \"Iluminação vinda de baixo criando sombras no rosto\", \"Fundo com objetos pessoais distractores\", \"Capa genérica sem relação com tecnologia\", \"Rosto não centralizado na imagem\", \"Foto em ângulo de selfie\", \"Olhar não direcionado à câmera\"). Se estiver \"✅ De acordo...\", o feedback pode ser uma string vazia `\"\"` ou elogio breve.\n- O campo `general_comments` deve avaliar a coerência visual entre as duas imagens (ex: \"A foto profissional combina bem com a capa tech minimalista\").\n- Todo o texto da saída deve estar em **português brasileiro**.\n- Nunca exponha metadados do modelo ou mencione que existem outros agentes de análise.",
+          "maxIterations": 3,
+          "passthroughBinaryImages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -1216,
+        16
+      ],
+      "id": "413b0f36-f7b7-48cf-9f64-1172af3338ef",
+      "name": "Linkedin Images Check AI Agent",
+      "alwaysOutputData": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "71e3c1bd-6b4d-4c94-8748-dec9f1343e42",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -6928,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.5-air:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -4400,
+        1232
+      ],
+      "id": "7605fcd9-2547-4073-91d6-29f11fbd83fe",
+      "name": "OpenRouter Chat Model2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "arcee-ai/trinity-large-preview:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -4272,
+        1232
+      ],
+      "id": "12391faa-9e92-461c-8b03-19e7c6dfa1c9",
+      "name": "OpenRouter Chat Model3",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -4160,
+        1232
+      ],
+      "id": "a415fb10-0f8f-4ba7-9724-83630a97083e",
+      "name": "OpenRouter Chat Model4",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "tngtech/tng-r1t-chimera:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3296,
+        1232
+      ],
+      "id": "ebe07e66-018e-492e-9d98-9cb964a843a9",
+      "name": "OpenRouter Chat Model5",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3168,
+        1232
+      ],
+      "id": "e7f3a2dc-1d4f-47a9-bf22-15c0aa2562f1",
+      "name": "OpenRouter Chat Model6",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.5-air:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3024,
+        1232
+      ],
+      "id": "a23ecb29-a0eb-404f-adac-c53d25485044",
+      "name": "OpenRouter Chat Model7",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "arcee-ai/trinity-large-preview:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -2896,
+        1232
+      ],
+      "id": "5695a365-0136-4238-abb6-927d7f3d3af5",
+      "name": "OpenRouter Chat Model8",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -2784,
+        1232
+      ],
+      "id": "86745dfd-e594-44a0-8a2c-e535e7195c2b",
+      "name": "OpenRouter Chat Model9",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "tngtech/tng-r1t-chimera:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3984,
+        1232
+      ],
+      "id": "e5929ec8-ec73-4bee-a140-9317f4b87522",
+      "name": "OpenRouter Chat Model10",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3856,
+        1232
+      ],
+      "id": "c80ce131-b89b-4ced-9ace-1c31f8fe87a2",
+      "name": "OpenRouter Chat Model11",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.5-air:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3712,
+        1232
+      ],
+      "id": "a9d6c63e-5419-4a4a-8c55-943bab6183a6",
+      "name": "OpenRouter Chat Model12",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "arcee-ai/trinity-large-preview:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3584,
+        1232
+      ],
+      "id": "6b4f396c-84a4-4031-bd51-b2106bb5675a",
+      "name": "OpenRouter Chat Model13",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -3472,
+        1232
+      ],
+      "id": "8ee2b0cf-71e9-4f2d-af58-9d4b5c307913",
+      "name": "OpenRouter Chat Model14",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 48,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 48,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 56,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 56,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 64,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6cce9b20-7d18-4728-856f-2f2922ff1883",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 64,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "03dc71e2-8773-4c39-ad97-aee7b4d2cd31",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 72,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5acce53f-b449-490c-a822-cc8d7e505880",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 72,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "e2db7f7c-0467-488d-bb82-d937f12a29fd",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -3808,
+        944
+      ],
+      "id": "2aad12f9-f667-4885-aeb3-eb7eb47d0a21",
+      "name": "Model Selector Account 2"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6cce9b20-7d18-4728-856f-2f2922ff1883",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "03dc71e2-8773-4c39-ad97-aee7b4d2cd31",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5acce53f-b449-490c-a822-cc8d7e505880",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "e2db7f7c-0467-488d-bb82-d937f12a29fd",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -4496,
+        976
+      ],
+      "id": "33741330-11a5-4f9b-87dd-0cadf0c96eb0",
+      "name": "Model Selector Account 1"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 88,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 88,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 96,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 96,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 104,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6cce9b20-7d18-4728-856f-2f2922ff1883",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 104,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "03dc71e2-8773-4c39-ad97-aee7b4d2cd31",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 112,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5acce53f-b449-490c-a822-cc8d7e505880",
+                    "leftValue": "={{ $runIndex + 1 }}",
+                    "rightValue": 112,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "e2db7f7c-0467-488d-bb82-d937f12a29fd",
+                    "leftValue": "={{ $runIndex + 1 }}",
+                    "rightValue": 120,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -3120,
+        976
+      ],
+      "id": "fbb30d90-3ebb-4160-a4a4-0b9f59456ab2",
+      "name": "Model Selector Account 3"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ed3ffd64-57b5-4fa1-bfa5-f97429ab8626",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "30842bda-aba7-4cee-887c-7253139354b4",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "bcbd2c45-9709-46d7-8878-08647768a691",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3bb28540-10d2-43e3-be3c-2bf9d0ef7398",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "9ae93ae3-ac8f-4d76-abac-d68000bab046",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 120,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -3760,
+        416
+      ],
+      "id": "62611fca-d4da-4d19-9d36-67ce68fac26c",
+      "name": "Accounts Selector"
+    },
+    {
+      "parameters": {
+        "content": "## Troca de conta a cada 40 requisições",
+        "height": 256,
+        "width": 464
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -3872,
+        320
+      ],
+      "id": "6525a2cc-3a44-4242-b640-be20e2d5f2c7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "model": "tngtech/tng-r1t-chimera:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -4704,
+        1232
+      ],
+      "id": "1ea8339a-c956-4e71-abf6-f8f8402a64f0",
+      "name": "OpenRouter Chat Model15",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -4544,
+        1232
+      ],
+      "id": "0b3e0290-a962-464e-8b7b-19b17e77f30e",
+      "name": "OpenRouter Chat Model16",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const linkedinProfileData = $json.linkedinProfileData || {}\n\nreturn {\n  publicIdentifier: linkedinProfileData.publicIdentifier || null,\n  linkedinUrl: linkedinProfileData.linkedinUrl || null,\n  firstName: linkedinProfileData.firstName || null,\n  lastName: linkedinProfileData.lastName || null,\n  headline: linkedinProfileData.headline || null,\n  openToWork: linkedinProfileData.openToWork || false,\n  location: linkedinProfileData.location || null,\n  topSkills: linkedinProfileData.topSkills || null,\n  connectionsCount: linkedinProfileData.connectionsCount || null,\n  followerCount: linkedinProfileData.followerCount || null,\n  verified: linkedinProfileData.verified || false,\n  about: linkedinProfileData.about || null,\n  currentPosition: linkedinProfileData.currentPosition || null,\n  profileTopEducation: linkedinProfileData.profileTopEducation || null,\n  profileActions: linkedinProfileData.profileActions || null,\n  profilePicture: linkedinProfileData.profilePicture?.url || linkedinProfileData.photo || null,\n  coverPicture: linkedinProfileData.coverPicture?.url || null,\n  services: linkedinProfileData.services || null,\n  experiences: linkedinProfileData.experience.map(experience => ({\n  ...experience || {},\n  companyLogo: experience.companyLogo?.url || null\n  })) || [],\n  educations: linkedinProfileData.education.map(education => ({\n    ...education || {},\n    schoolLogo: education.schoolLogo?.url || null\n  })) || [],\n  certifications: linkedinProfileData.certifications || null,\n  projects: linkedinProfileData.projects || null,\n  volunteering: linkedinProfileData.volunteering || null,\n  receivedRecommendations: linkedinProfileData.receivedRecommendations || null,\n  skills: linkedinProfileData.skills || null,\n  publications: linkedinProfileData.publications || null,\n  courses: linkedinProfileData.courses || null,\n  patents: linkedinProfileData.patents || null,\n  honorsAndAwards: linkedinProfileData.honorsAndAwards || null,\n  languages: linkedinProfileData.languages || null,\n  causes: linkedinProfileData.causes || null,\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -5904,
+        48
+      ],
+      "id": "3411a679-6c29-418d-a786-125151766a91",
+      "name": "Linkedin profile data processing",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "54975f1d-3733-4707-be46-15ceea754b22",
+              "leftValue": "={{ $json.linkedinProfileData }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ec8b2960-5843-4108-8b3e-db3c138f6d71",
+              "leftValue": "={{ $json.parentRunIndex }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -6496,
+        64
+      ],
+      "id": "f49a5798-7ae0-458b-8df3-bc9c56f8a28b",
+      "name": "Linkedin profile data exist?"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($('Linkedin profile data exist?').item.json.parentRunIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -4992,
+        32
+      ],
+      "id": "61c92b67-00bc-43c1-917d-f5f808f1015d",
+      "name": "Wait",
+      "webhookId": "5ba41b84-55d5-4d2b-92fa-4f0feeb59ea8"
+    },
+    {
+      "parameters": {
+        "model": "google/gemma-3-27b-it:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1456,
+        576
+      ],
+      "id": "540d095e-7e6a-4e62-b946-81463b9580d4",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "google/gemma-3-27b-it:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1328,
+        576
+      ],
+      "id": "c0f622e4-9b4f-4bfa-a856-4243977f4efa",
+      "name": "OpenRouter Chat Model17",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "google/gemma-3-27b-it:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        576
+      ],
+      "id": "fdd7e0aa-57c4-4859-8ac9-86f7d70f44ce",
+      "name": "OpenRouter Chat Model29",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Linkedin profile data exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 120,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -1552,
+        320
+      ],
+      "id": "135f9e5e-2dab-4a99-82bc-3ae948004762",
+      "name": "Account Selector"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao processar dados vindos do Linkedin"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -5408,
+        496
+      ],
+      "id": "fa026a94-422f-4670-a8f9-42393aba5562",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao corrigir os dados do Linkedin"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -2640,
+        272
+      ],
+      "id": "dea213aa-4d07-4adf-9332-9d63d5b65a49",
+      "name": "Stop and Error1"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao corrigir os elementos visuais do Linkedin"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        272
+      ],
+      "id": "9142ec4c-2a8c-4548-b871-11dee7a094c3",
+      "name": "Stop and Error2"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao processar os dados finais das correções do Linkedin"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        432,
+        240
+      ],
+      "id": "43e21a98-bc0d-4c88-893b-84b3980d1b2f",
+      "name": "Stop and Error3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Linkedin Texts Check AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Linkedin Images Check AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Linkedin Images Check AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Texts Check AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Images Check AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Structuring Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structuring Final Output": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Linkedin profile data exist?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model9": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model10": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model11": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model12": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model13": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model14": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Model Selector Account 2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Accounts Selector",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Model Selector Account 1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Accounts Selector",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Model Selector Account 3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Accounts Selector",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model15": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model16": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Accounts Selector": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Linkedin Texts Check AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin profile data processing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin profile data exist?": {
+      "main": [
+        [
+          {
+            "node": "Linkedin profile data processing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Linkedin Texts Check AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Account Selector",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model17": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Account Selector",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model29": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Account Selector",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Account Selector": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Linkedin Images Check AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "d67ded36-2478-4c3a-8fdd-3eaa2cdb6416",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "954b9fc910b1abc00f621bddeb239668587b55a36512b636f1604f5493a993aa"
+  },
+  "id": "ejNWjfTgM6DOi5givBsjj",
+  "tags": []
+}

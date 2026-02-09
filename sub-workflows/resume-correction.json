@@ -1,0 +1,2080 @@
+{
+  "name": "[PS] Resume Correction",
+  "nodes": [
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n    \"type\": \"object\",\n    \"properties\": {\n        \"sections\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"header\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Nome e sobrenome assim como está/estará no Linkedin\",\n                                    \"⚠️ Número de celular\",\n                                    \"⚠️ Email\",\n                                    \"⚠️ Cidade e estado em que resido atualmente\",\n                                    \"⚠️ Link do Linkedin\",\n                                    \"⚠️ Link do Github\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"objective\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Campo inexistente\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"summary\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Ultrapassa 5 linhas\",\n                                    \"⚠️ Não contém conquistas, interesses e metas profissionais\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"education\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Formação no Programadores do Amanhã\",\n                                    \"⚠️ Informações sobre meu ensino médio\",\n                                    \"⚠️ Graduação ou curso técnico\",\n                                    \"⚠️ Ordem cronológica\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"projects\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Descrição, resultados e link de acesso\",\n                                    \"⚠️ Tecnologias utilizadas em cada um deles destacadas\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"professional_experience\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Cargo, nome da empresa e duração\",\n                                    \"⚠️ Descrição das atividades realizadas, com destaque de resultados e conquistas\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"technical_skills\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Linguagens e frameworks\",\n                                    \"⚠️ Nível de conhecimento em idioma estrangeiro\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"courses\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Título do Curso\",\n                                    \"⚠️ Carga horária\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                },\n                \"final_review\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"status\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                                \"type\": \"string\",\n                                \"enum\": [\n                                    \"⚠️ Revisar o português\",\n                                    \"⚠️ Diminuir número de páginas\",\n                                    \"Outro: (explique)\",\n                                    \"✅ Tudo certo\"\n                                ]\n                            }\n                        },\n                        \"feedback\": {\n                            \"type\": \"string\"\n                        }\n                    },\n                    \"required\": [\n                        \"status\",\n                        \"feedback\"\n                    ]\n                }\n            },\n            \"required\": [\n                \"header\",\n                \"objective\",\n                \"summary\",\n                \"education\",\n                \"projects\",\n                \"professional_experience\",\n                \"technical_skills\",\n                \"courses\",\n                \"final_review\"\n            ]\n        },\n        \"general_comments\": {\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\n        \"sections\",\n        \"general_comments\"\n    ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -880,
+        112
+      ],
+      "id": "db3dec4f-69e2-4f11-9f32-aaeebba1d686",
+      "name": "Structured Output Parser1",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "145e5692-b22a-451c-b864-a5364d682840",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f767907a-3e9d-454f-8f89-264b05bea772",
+              "leftValue": "={{ $json.numpages }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -6784,
+        -96
+      ],
+      "id": "4fa9bcad-6191-41d4-b02f-f4c8c1c29b80",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const text = $input.item.json.text\nconst numPages = $input.item.json.numpages\n\nconst textFormated = text.split(\"\\n\").join(\" \")\n\nreturn {\n  textFormated,\n  numPages\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3584,
+        -112
+      ],
+      "id": "1a4625fc-9803-40df-834b-3731f83f0a92",
+      "name": "Code in JavaScript1",
+      "retryOnFail": false,
+      "executeOnce": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Curriculo:\n{{ $json.toJsonString() }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "# Role (Papel)\n\nVocê é um especialista em Carreira e Tech Recruiter do projeto \"Programadores do Amanhã\". Sua função é analisar currículos de estudantes, cruzando as informações com os Guias oficiais da instituição.\n\n## Task (Tarefa)\n\nReceba os dados do currículo do aluno, valide item a item e gere um JSON estrito contendo a avaliação.\n\n## Knowledge Base (Regras de Validação)\n\n### 📋 Cabeçalho (identificação)\n\n- **Nome**: Completo e profissional (evitar apelidos)\n- **Contato**: Deve conter celular (com DDD) e e-mail profissional (sem termos infantis ou apelidos)\n- **Localização**: Apenas Cidade/Estado (não incluir endereço completo/CEP por segurança)\n- **Links**: LinkedIn e GitHub devem ser hiperlinks clicáveis. O link do LinkedIn deve estar limpo (sem números aleatórios no final)\n- **Dados Pessoais**: Estado civil e idade são consideradas informações faltantes (devem estar ausentes do currículo), pois são dados não-necessários para o processo seletivo técnico e podem gerar viés inconsciente\n\n### 🎯 Objetivo\n\n- **Especificidade**: Deve ser uma única linha indicando o cargo desejado (ex: \"Desenvolvedor Front-end Junior\")\n- **Erro comum**: Não deve ser um texto motivacional ou genérico como \"Quero aprender\"\n- **Campo deve existir e estar preenchido**\n\n### 🤏 Resumo\n\n- **Extensão**: Rigorosamente entre 3 a 5 linhas\n- **Conteúdo**: Deve conter o tempo de estudo/experiência, as principais tecnologias (stack) e uma breve menção a soft skills ou conquistas acadêmicas relevantes\n- **Tom**: Escrito em primeira pessoa\n\n### 🎓 Educação\n\n- **Destaque PDA**: A formação no \"Programadores do Amanhã\" deve estar em destaque\n- **Ordem Cronológica Inversa**: Começar sempre pela formação mais recente (ex: Faculdade > PDA > Ensino Médio)\n- **Status**: Deve conter data de início e previsão de conclusão (ou \"Concluído\")\n- **Dados completos**: Todos os campos obrigatórios preenchidos\n\n### 🗂️ Projetos\n\n- **Trindade de Ouro**: Cada projeto deve ter Nome, Descrição Curta, Tecnologias e Link (GitHub ou Deploy/Live Demo)\n- **Resultados**: A descrição deve focar no \"o quê\" o projeto resolve e \"como\" foi feito\n- **Tecnologias**: Devem estar destacadas visualmente ou textualmente em cada projeto\n\n### 🧑‍💻 Experiência Profissional\n\n- **Estrutura**: Cargo, Empresa e Período (Mês/Ano) claramente identificados\n- **Verbos de Ação**: As atividades devem começar com verbos de ação (ex: \"Desenvolvi\", \"Auxiliei\", \"Otimizei\")\n- **Foco em Resultados**: Se o aluno não tiver experiência formal, esta seção pode ser substituída por \"Experiências Acadêmicas\" ou \"Projetos Integradores\", seguindo a mesma estrutura de impacto\n\n### 📏 Habilidades Técnicas\n\n- **Categorização**: Separar por categorias (ex: Linguagens, Frameworks, Ferramentas)\n- **Idiomas**: Listar o idioma e o nível de proficiência (ex: Inglês - Intermediário)\n- **Hard e Soft skills**: Tanto habilidades técnicas quanto comportamentais relevantes\n\n### 📚 Cursos (Opcional)\n\n- **Relevância**: Apenas cursos que agreguem à área de tecnologia\n- **Dados**: Nome do curso e carga horária (opcional, mas recomendada para cursos técnicos)\n\n### 🔚 Revisão Final\n\n- **Gramática**: Zero erros de digitação ou português\n- **Design**: Layout limpo, sem excesso de cores ou colunas complexas que dificultem a leitura de ATS (sistemas de triagem)\n- **Formato**: O arquivo final deve ser sempre em PDF (alertar se notar menção a .doc ou .txt)\n- **Volume**: Máximo de 2 páginas (idealmente 1 página para perfis junior)\n\n## Output Specification (Especificação de Saída)\n\n**SCHEMA DE SAÍDA ESTRITO (JSON puro, sem texto adicional ou formatação markdown):**\n\n```json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"sections\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"header\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Nome e sobrenome assim como está/estará no Linkedin\",\n                  \"⚠️ Número de celular\",\n                  \"⚠️ Email\",\n                  \"⚠️ Cidade e estado em que resido atualmente\",\n                  \"⚠️ Link do Linkedin\",\n                  \"⚠️ Link do Github\",\n                  \"⚠️ Presença de dados não-necessários (idade, estado civil, CPF, etc.)\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"objective\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\"⚠️ Campo inexistente\", \"✅ Tudo certo\"]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"summary\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Ultrapassa 5 linhas\",\n                  \"⚠️ Não contém conquistas, interesses e metas profissionais\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"education\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Formação no Programadores do Amanhã\",\n                  \"⚠️ Informações sobre meu ensino médio\",\n                  \"⚠️ Graduação ou curso técnico\",\n                  \"⚠️ Ordem cronológica\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"projects\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Descrição, resultados e link de acesso\",\n                  \"⚠️ Tecnologias utilizadas em cada um deles destacadas\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"professional_experience\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Cargo, nome da empresa e duração\",\n                  \"⚠️ Descrição das atividades realizadas, com destaque de resultados e conquistas\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"technical_skills\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Linguagens e frameworks\",\n                  \"⚠️ Nível de conhecimento em idioma estrangeiro\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"courses\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Título do Curso\",\n                  \"⚠️ Carga horária\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        },\n        \"final_review\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"status\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                  \"⚠️ Revisar o português\",\n                  \"⚠️ Diminuir número de páginas\",\n                  \"Outro: (explique)\",\n                  \"✅ Tudo certo\"\n                ]\n              }\n            },\n            \"feedback\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\"status\", \"feedback\"]\n        }\n      },\n      \"required\": [\n        \"header\",\n        \"objective\",\n        \"summary\",\n        \"education\",\n        \"projects\",\n        \"professional_experience\",\n        \"technical_skills\",\n        \"courses\",\n        \"final_review\"\n      ]\n    },\n    \"general_comments\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"sections\", \"general_comments\"]\n}\n```\n\n**INSTRUÇÕES DE LÓGICA DE AVALIAÇÃO (OBRIGATÓRIAS):**\n\n- Para cada campo, analise se o conteúdo atende aos critérios da Knowledge Base.\n- Preencha o array `status` com:\n  - Problemas específicos da lista enum (quando ausente/incompleto) — NUNCA incluir \"✅ Tudo certo\"\n  - APENAS `[\"✅ Tudo certo\"]` (quando completo e conforme as regras)\n- O campo `feedback` em cada seção deve receber um texto que explica detalhadamente o porquê o status e os adjustments foram selecionados, citando exemplos concretos do currículo analisado e alinhando com as regras da Knowledge Base.\n- O campo `general_comments` deve receber um texto que explica detalhadamente o porquê cada um dos campos do currículo foi avaliado, citando exemplos concretos do currículo analisado e alinhando com as regras da Knowledge Base.\n- Todo o texto da saída deve estar em **português brasileiro**.\n- Nunca exponha metadados do modelo.\n- Não inclua campos adicionais além dos especificados no schema.\n- A saída deve ser APENAS um objeto JSON válido, sem formatação markdown, sem texto adicional antes ou depois.",
+          "maxIterations": 3,
+          "passthroughBinaryImages": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -944,
+        -144
+      ],
+      "id": "f7fce850-5a56-4f31-8a88-c26be90cfe20",
+      "name": "Resume Correction AI Agent",
+      "alwaysOutputData": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -7760,
+        -80
+      ],
+      "id": "54756a5a-251d-4c94-95d3-19e4e3b258a4",
+      "name": "Extract Text From PDF",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0c964d3f-fe8b-4c4f-be83-30ed7baf3d48",
+              "leftValue": "={{ $binary.data }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7ea54445-2554-451a-996a-c9e30b2ca1ee",
+              "leftValue": "={{ $binary.data.fileExtension }}",
+              "rightValue": "pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "b68b6298-6b3f-4a50-a70c-56d75bbbdd8a",
+              "leftValue": "={{  $binary.data.fileSize.match(/\\d+/g)[0].toNumber() }}",
+              "rightValue": 1000,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -8608,
+        -64
+      ],
+      "id": "46ec4a4b-6300-4b97-9056-c764615d360e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "url": "=https://drive.google.com/uc?export=download&id={{ $json.resumeId }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -9056,
+        -48
+      ],
+      "id": "0985b8c4-9cde-442b-a6ba-7c25aa968fda",
+      "name": "HTTP Request",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c840c1a6-5c7c-4f9a-88a1-a98718f788a3",
+              "leftValue": "={{ $json.resumeLink }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "51aa60a9-885d-40a0-a85b-80d001a55f71",
+              "leftValue": "={{ $json.parentRunIndex }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -10112,
+        -32
+      ],
+      "id": "25e11d17-748e-4009-9504-0502539e56a7",
+      "name": "Input item exist?"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "8c5680bd-d8fe-4ff9-bf00-5cf893ffc1af",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -10400,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "model": "tngtech/tng-r1t-chimera:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -2368,
+        1056
+      ],
+      "id": "d68062f8-079d-4b82-bf3a-3b38e5fe219e",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -2208,
+        1056
+      ],
+      "id": "08b7834e-fb86-4e48-aa97-9e551b887984",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.5-air:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -2064,
+        1056
+      ],
+      "id": "367f8dc8-8d2f-4950-95a3-fc5ba9233bc1",
+      "name": "OpenRouter Chat Model2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "arcee-ai/trinity-large-preview:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1936,
+        1056
+      ],
+      "id": "1e876a2a-e667-430c-ae07-825d8177ad1d",
+      "name": "OpenRouter Chat Model3",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1824,
+        1056
+      ],
+      "id": "0110602c-e0b0-40ca-9b34-56bb07487ebd",
+      "name": "OpenRouter Chat Model4",
+      "credentials": {
+        "openRouterApi": {
+          "id": "59X7gTvyasnWiggG",
+          "name": "Karlla - OpenRouter"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "tngtech/tng-r1t-chimera:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        1056
+      ],
+      "id": "e617e79e-f692-4690-93dd-82f7e48f0484",
+      "name": "OpenRouter Chat Model5",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        1056
+      ],
+      "id": "f3ec0d0d-544f-4853-ac95-c9a1400770b2",
+      "name": "OpenRouter Chat Model6",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.5-air:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        1056
+      ],
+      "id": "09d8e63b-0514-4018-8f44-c3a3306d9450",
+      "name": "OpenRouter Chat Model7",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "arcee-ai/trinity-large-preview:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        1056
+      ],
+      "id": "690644d9-0aa4-43d7-9a32-221c6fe858ee",
+      "name": "OpenRouter Chat Model8",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        1056
+      ],
+      "id": "7dcf46b9-61e9-4620-a0aa-61ef4c1afae6",
+      "name": "OpenRouter Chat Model9",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "tngtech/tng-r1t-chimera:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1648,
+        1056
+      ],
+      "id": "325e01cc-983d-4f2b-a9a4-b68dc52b7577",
+      "name": "OpenRouter Chat Model10",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1520,
+        1056
+      ],
+      "id": "691a3a2a-109b-4aae-8623-bc19988cef2e",
+      "name": "OpenRouter Chat Model11",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.5-air:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1376,
+        1056
+      ],
+      "id": "bbdb126a-9016-4dfe-b890-620a0dcea90a",
+      "name": "OpenRouter Chat Model12",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "arcee-ai/trinity-large-preview:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1248,
+        1056
+      ],
+      "id": "c0304ef8-2e1f-4d98-9258-1b24d1c70851",
+      "name": "OpenRouter Chat Model13",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.3-70b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        1056
+      ],
+      "id": "32a696f0-5bff-43a0-aeb5-f126afa39ea8",
+      "name": "OpenRouter Chat Model14",
+      "credentials": {
+        "openRouterApi": {
+          "id": "fvUFiLX6380S7Ikj",
+          "name": "openrouter_cloudfy"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6cce9b20-7d18-4728-856f-2f2922ff1883",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "03dc71e2-8773-4c39-ad97-aee7b4d2cd31",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5acce53f-b449-490c-a822-cc8d7e505880",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "e2db7f7c-0467-488d-bb82-d937f12a29fd",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -1472,
+        768
+      ],
+      "id": "06c617b7-85cd-4cb2-842a-c6e044bf7534",
+      "name": "Model Selector Account 2"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6cce9b20-7d18-4728-856f-2f2922ff1883",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "03dc71e2-8773-4c39-ad97-aee7b4d2cd31",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5acce53f-b449-490c-a822-cc8d7e505880",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "e2db7f7c-0467-488d-bb82-d937f12a29fd",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -2160,
+        800
+      ],
+      "id": "e2bd3aa0-1f50-43a1-851e-53d62193d50a",
+      "name": "Model Selector Account 1"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4701fb74-b419-4cce-9d9c-0e4d30ab3cd0",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7a013cc-db20-47a0-a248-de08b10d3f03",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 8,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "0b5bd087-c048-4db0-87ff-3cab35938695",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "49ece79b-fc9d-473e-be67-7f19420e3828",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 16,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "c58333a7-91a5-4c78-9a4c-825f9b13279e",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6cce9b20-7d18-4728-856f-2f2922ff1883",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 24,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "03dc71e2-8773-4c39-ad97-aee7b4d2cd31",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5acce53f-b449-490c-a822-cc8d7e505880",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 32,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "e2db7f7c-0467-488d-bb82-d937f12a29fd",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -784,
+        800
+      ],
+      "id": "fec6deb5-2c8d-492b-9eaa-28ebb1195df0",
+      "name": "Model Selector Account 3"
+    },
+    {
+      "parameters": {
+        "model": "groq/compound-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -784,
+        320
+      ],
+      "id": "62a4728d-fa5d-4275-8c88-ab1bc2fd3a53",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "2eEA22JnLOc8VUvC",
+          "name": "Karlla - Groq"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const resumeCorrection = $input.item.json\n\nreturn {\n  resumeCorrection: {\n    ...resumeCorrection.output\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        -160
+      ],
+      "id": "f0160afd-fb68-4904-aa81-5b103d9d799d",
+      "name": "Output Formater"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.ocr.space/Parse/Image",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "por"
+            },
+            {
+              "name": "ocrengine",
+              "value": "2"
+            },
+            {
+              "name": "base64Image",
+              "value": "=data:application/pdf;base64,data{{ $json.resumeDataString  }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -4400,
+        208
+      ],
+      "id": "db0b9773-198c-464c-83d5-a3ab6d783b00",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mIxmkFn7e3xBybOl",
+          "name": "ocr.space apikey"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const resumeBinaryData = $(\"HTTP Request\").item.binary.data\n\nreturn {\n  binary: {\n    data: resumeBinaryData\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -6208,
+        240
+      ],
+      "id": "a0fa3645-35bc-48aa-a0dc-e98abcf4fe86",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const textFormated = $json.ParsedResults.map(result => result.ParsedText.split(\"\\n\").join(\" \")).join(\" \")\n\nconst numPages = $json.ParsedResults.length\n\nif(numPages === 0){\n  return {\n    error: {\n    }\n  }\n}\n\nreturn {\n  json: { \n    textFormated,\n    numPages\n  }\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3568,
+        192
+      ],
+      "id": "f5cc94e6-3756-4eac-bd36-3b55dda19da9",
+      "name": "Code in JavaScript",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ed3ffd64-57b5-4fa1-bfa5-f97429ab8626",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "30842bda-aba7-4cee-887c-7253139354b4",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 40,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "bcbd2c45-9709-46d7-8878-08647768a691",
+                    "leftValue": "={{ $('Input item exist?').item.json.parentRunIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3bb28540-10d2-43e3-be3c-2bf9d0ef7398",
+                    "leftValue": "={{ $runIndex + 1 }}",
+                    "rightValue": 80,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  },
+                  {
+                    "id": "9ae93ae3-ac8f-4d76-abac-d68000bab046",
+                    "leftValue": "={{ $runIndex + 1 }}",
+                    "rightValue": 120,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -1424,
+        240
+      ],
+      "id": "81094d16-a0e3-49d5-9170-10f62288bc9a",
+      "name": "Accounts Selector"
+    },
+    {
+      "parameters": {
+        "content": "## Troca de conta a cada 40 requisições",
+        "height": 256,
+        "width": 464
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1536,
+        144
+      ],
+      "id": "6acb8296-487f-4bc2-9f8e-8216c81aa9bc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "084464ca-84d9-4587-9cc9-c9a5ff800750",
+              "leftValue": "={{ $json.IsErroredOnProcessing }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "37cda536-054f-4b8a-87b8-affec719cc5b",
+              "leftValue": "={{ $json.IsErroredOnProcessing }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -4080,
+        208
+      ],
+      "id": "af4c1710-6d4a-4809-84a1-4d40a15194c6",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "destinationKey": "resumeDataString",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -5728,
+        240
+      ],
+      "id": "66d8759e-d817-479d-a859-41a29a9a0ca5",
+      "name": "Extract from File",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2859c317-fa5c-4f44-a1a1-1a1c881d24ef",
+              "leftValue": "={{ $json.resumeDataString }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -5264,
+        224
+      ],
+      "id": "87c7c2b5-0688-487b-a3b9-01bd019fa6d4",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a316cc7-62de-406b-8b66-101ed961371a",
+              "leftValue": "={{ $runIndex +1 }}",
+              "rightValue": 2,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -8240,
+        96
+      ],
+      "id": "16029c20-3c5b-40e3-ad16-c583da4a3716",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($runIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -9360,
+        96
+      ],
+      "id": "c7e30c12-6432-495b-acae-181623423a2f",
+      "name": "Wait1",
+      "webhookId": "62f27f09-2d15-47ae-be09-06166e3574b9"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a316cc7-62de-406b-8b66-101ed961371a",
+              "leftValue": "={{ $runIndex +1 }}",
+              "rightValue": 2,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -3840,
+        448
+      ],
+      "id": "c6c06442-3582-4eba-b344-b9285ef496a1",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "amount": "={{ 30 * ($runIndex + 1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -4624,
+        432
+      ],
+      "id": "388a6bd8-e2df-44ab-becc-1e362017e3be",
+      "name": "Wait2",
+      "webhookId": "62f27f09-2d15-47ae-be09-06166e3574b9"
+    },
+    {
+      "parameters": {
+        "errorMessage": "O Link do Curriculo é obrigatório."
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -9760,
+        176
+      ],
+      "id": "58fb6a28-cf0c-4f1e-98cf-c6c1362f158c",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao baixar Curriculo, verifique se está no Google Drive e publico."
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -7872,
+        288
+      ],
+      "id": "115b78ff-573f-447a-ab5a-2daeedafd7fb",
+      "name": "Stop and Error1"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao processar o curriculo, verifique se é um PDF valido e sem senha."
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -4896,
+        624
+      ],
+      "id": "2bf94eac-d6ce-486e-93b3-aee99ec5956d",
+      "name": "Stop and Error2"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao processar o curriculo, verifique se é um PDF valido e sem senha."
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -3104,
+        464
+      ],
+      "id": "fd164b8e-1703-4db0-abac-6fd7aab8644a",
+      "name": "Stop and Error3"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao corrigir os dados do Curriculo"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        112
+      ],
+      "id": "abb8b873-a9eb-4688-9098-884191174039",
+      "name": "Stop and Error4"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function extractIdGoogleDrive(url) {\n  // Padrões de regex para diferentes formatos de URL do Google Drive\n  const padroes = [\n    /\\/open\\?id=([a-zA-Z0-9_-]+)/,\n    /\\/file\\/d\\/([a-zA-Z0-9_-]+)/,\n    /\\/uc\\?(?:export=download&)?id=([a-zA-Z0-9_-]+)/,\n    /\\/folders\\/([a-zA-Z0-9_-]+)/,\n  ];\n\n  for (const padrao of padroes) {\n    const match = url.match(padrao);\n    if (match) {\n      return match[1];\n    }\n  }\n\n  // Retorna null se nenhum padrão for encontrado\n  return null;\n}\n\nconst resumeId = extractIdGoogleDrive($json.resumeLink.trim());\n\nreturn {\n  json: {\n    resumeId,\n  },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -9600,
+        -48
+      ],
+      "id": "a06abcab-929c-474b-a9b5-e25b05ec4c67",
+      "name": "Code in JavaScript3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Extract Text From PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Resume Correction AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Text From PDF": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Resume Correction AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input item exist?": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume Correction AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Output Formater",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Input item exist?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 1",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model9": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 3",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model10": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model11": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model12": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model13": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model14": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector Account 2",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Model Selector Account 2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Accounts Selector",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Model Selector Account 1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Accounts Selector",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Model Selector Account 3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Accounts Selector",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Resume Correction AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Accounts Selector": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Resume Correction AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "cc184050-d7ae-4dd3-a0c6-a4721c1e66fc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "954b9fc910b1abc00f621bddeb239668587b55a36512b636f1604f5493a993aa"
+  },
+  "id": "8iX6pV-GOfTOrAEBH9RSS",
+  "tags": []
+}

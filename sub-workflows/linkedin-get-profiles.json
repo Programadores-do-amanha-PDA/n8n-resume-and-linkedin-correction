@@ -1,0 +1,236 @@
+{
+  "name": "[PS] Linkedin Fetch Profiles",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map((item) => {\n  return {\n    linkinProfileData: item.json\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        208
+      ],
+      "id": "b025d110-b863-41c5-8728-4bc3f5e0068b",
+      "name": "Code in JavaScript5",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "Run actor and get dataset",
+        "actorId": {
+          "__rl": true,
+          "value": "LpVuK3Zozwuipa5bp",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Profile Scraper + Email ✅ No Cookies (harvestapi/linkedin-profile-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/LpVuK3Zozwuipa5bp/input"
+        },
+        "customBody": "={\n\"profileScraperMode\": \"Profile details no email ($4 per 1k)\",\n \"urls\": [{{ $json.linkedinProfileUrls }}]\n}"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        368,
+        224
+      ],
+      "id": "051dbac5-7742-408f-8b3c-89d87805ef07",
+      "name": "Run an Actor and get dataset1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c840c1a6-5c7c-4f9a-88a1-a98718f788a3",
+              "leftValue": "={{ $json.linkedinProfileUrls }}",
+              "rightValue": 2,
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2577ca52-5e56-44ee-baaa-38dfce2efe75",
+              "leftValue": "={{ $json.parentRunIndex }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -608,
+        240
+      ],
+      "id": "51a267e8-10e6-4d9b-bc18-61558830e690",
+      "name": "Is Itens Valid?"
+    },
+    {
+      "parameters": {
+        "content": "## Get profile data\n\n- 1 request with 10 profiles\n- 10 requests per day (max) ",
+        "height": 544,
+        "width": 832
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "54bac47f-283a-4762-8b91-2fa2fd15acdc",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "66c90a07-a372-4a68-adcf-ca143f048e3e",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -1488,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "maxItems": 10
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        240
+      ],
+      "id": "e0e1bef7-4bcf-49fd-8125-1a63800f74d7",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Os campos linkedinProfileLinks e parentRunIndex são obrigatórios."
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        528
+      ],
+      "id": "5a02e569-295f-4ad7-8275-d011693ecba4",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Erro ao obter dados dos perfils do Linkedin."
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        544
+      ],
+      "id": "f176deb6-7cd9-45cc-96a2-9285c3768eb5",
+      "name": "Stop and Error1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Code in JavaScript5": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run an Actor and get dataset1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Itens Valid?": {
+      "main": [
+        [
+          {
+            "node": "Run an Actor and get dataset1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Is Itens Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "aff4c51d-2c9e-4700-9392-f75ed435a33f",
+  "meta": {
+    "instanceId": "954b9fc910b1abc00f621bddeb239668587b55a36512b636f1604f5493a993aa"
+  },
+  "id": "YPJOxFS9XYcfpM3jwxzcx",
+  "tags": []
+}
